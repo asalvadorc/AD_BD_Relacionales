@@ -48,7 +48,6 @@ rutes amb un aspecte similar a l'**Exercici 3_4** , però accedint ara a les
 dades guardades en **Rutes.sqlite** :
 
 ![](T4_Ex3_1.png)  
----  
   
 Podríem mantenir la connexió fins que s'aprete el botó d'**Eixir** , que és
 quan la tancaríem.
