@@ -1,0 +1,22 @@
+site_url : https://asalvadorc.github.io/AD_BD_Relacionales
+
+site_name: AD - Accés a Dades
+
+extra_css:
+  - css/extra.css
+
+theme: 
+  name: readthedocs
+  highlightjs: true
+  logo: assets/logocaminas.png
+
+nav:
+
+- UD4. Bases de Dades Relacionals:
+  - 1 - Les Bases de Dades Relacionals: 1__les_bases_de_dades_relacionals.md
+  - 2 - El desfasament Objecte-Relacional: 2__el_desfasament_objecterelacional.md
+  - 3 - Connexió a les B. Connectors: 3__connexi_a_les_bd_connectors.md
+  - 4 - "Tocar" les dades: 4__tocar_les_dades.md
+  - 5 - Iniciació a l'API JDBC: 5__iniciaci_a_lapi_jdbc.md
+  - 6 - JDBC avançat: 6__jdbc_avanat.md
+  - Exercicis: exercicis.md
