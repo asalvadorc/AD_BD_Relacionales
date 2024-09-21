@@ -28,7 +28,8 @@ informació) s'utilitzen taules.
 
 Intentarem explicar aquest desfasament amb uns exemples.
 
-```El Model Relacional```
+<u>El Model Relacional</u>
+========================
 
 El Model Relacional es basa en les taules. En una taula tindrem en les
 columnes els distints atributs o característiques que volem representar, i en
@@ -107,7 +108,8 @@ El Model Relacional també permet altres restriccions, com per exemple:
   * definir un camp com a no nul (per exemple podríem exigir que el camp **nom** de la taula **AUTOR** no puga agafar el valor nul)
   * assegurar la no repetició de determinats camps en diferents registres d’una mateixa taula (per exemple que no es puga repetir el camp nom de la taula EDITORIAL, ja que suposaria tenir dues editorials que es diuen exactament igual). 
 
-```Model Orientat a Objectes```
+<u>Model Orientat a Objectes</u>
+==============================
 
 El **Model Orientat a Objectes** és un altre model conceptual que té un punt
 de vista diferent al Model Entitat-Relació.
@@ -172,7 +174,8 @@ comoditat a l'hora de programar, el més lògic seria posar també en
 l'editorial, i en **Autor** posaríem un **ArrayList <Llibre>** amb tots els
 llibres de l'autor. Però no les hem posades per fer l'exemple més senzill.
 
-```El Desfasament Objecte-Relacional```
+<u>El Desfasament Objecte-Relacional</u>
+=======================================
 
 Si ens plantegem guardar els **objectes** d’una aplicació en un SGBD
 **Relacional** , el principal problema que trobarem és que es tracta de

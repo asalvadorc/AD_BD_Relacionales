@@ -45,14 +45,12 @@ Classe | Descripció
 ---|---  
 **Driver** | Permet connectar a una Base de Dades   
 **DriverManager** | Permet gestionar tots els drivers instal·lats al sistema  
-****|  
-****Connection**** | Representa una connexió amb una BD. En una aplicació pot haver més d'una connexió  
+**Connection** | Representa una connexió amb una BD. En una aplicació pot haver més d'una connexió  
 **Statement** | Permet executar sentències SQL sense paràmetres  
 **PreparedStatement** | Permet executar sentències SQL amb paràmetres  
 **ResultSet** | Conté les files resultants d'executar una sentència SELECT  
-****|  
-****DatabaseMetadata**** | Proporciona informació d'una BD, com per exemple les taules que conté  
-****ResultSetMetadata**** | Proporciona informació sobre un ResultSet: número de columnes, noms de les columnes, tipus, ...  
+**DatabaseMetadata** | Proporciona informació d'una BD, com per exemple les taules que conté  
+**ResultSetMetadata** | Proporciona informació sobre un ResultSet: número de columnes, noms de les columnes, tipus, ...  
   
 ## 5.1 - Establiment de la connexió
 
@@ -71,13 +69,13 @@ connexió a la Base de Dades d'aquesta manera:
 
 Aquestes són les **_url_** que utilitzarem:
 
-  * **PostgreSQL** : per connectar-nos al servidor situal a l'adreça **89.36.214.106** , que escolta el port per defecte (**5432**), i a la Base de Dades anomenada **geo_ad** , ****la cadena serà:
+  * **PostgreSQL** : per connectar-nos al servidor situal a l'adreça **89.36.214.106** , que escolta el port per defecte (**5432**), i a la Base de Dades anomenada **geo_ad** , la cadena serà:
 ```
-jdbc:postgresql://**89.36.214.106** :5432/geo**_ad**
+jdbc:postgresql://89.36.214.106:5432/geo_ad
 ```
   * **MySQL** : el servidor és el mateix de PostgreSQL, el port per defecte és 3306, i si volem connectar a la Base de Dades **factura** :
 ```
-jdbc:mysql://**89.36.214.106** :3306/factura
+jdbc:mysql://89.36.214.106:3306/factura
 ```
   * **SQLite** : no haurem d'especificar ni servidor ni port (ni posteriorment usuari ni contrasenya); únicament el nom del fitxer amb la ruta. Si volem connectar a la Base de Dades situada en el directori **/home/usuari/BD_SQLite** , i anomenada **proveta.sqlite** :
 ```
@@ -199,7 +197,10 @@ La diferència entre els dos mètodes que executen sentències SQL és:
   * El mètode **executeQuery** serveix per executar sentències de les quals s’espera **que tornen dades** , és a dir, són consultes **SELECT**.
   * En canvi, el mètode **executeUpdate** serveix específicament per a sentències que no retornen dades. Serviran per a modificar la Base de Dades connectada (**INSERT** , **DELETE** , **UPDATE** , fins i tot **CREATE TABLE**) .
 
-```Sentències que no retornen dades```
+
+<u>Sentències que no retornen dades</u>
+=================================
+
 
 Les executem amb el mètode **executeUpdate**. Seran **totes** les sentències
 SQL **excepte el SELECT** , que és la de consulta. És a dir, ens servirà per
@@ -228,9 +229,7 @@ Copieu el següent codi en un fitxer Kotlin anomenat
     
     
     package exemples
-    
-    package exemples
-    
+       
     import java.sql.DriverManager
     
     fun main(args: Array<String>) {
@@ -251,7 +250,8 @@ existeix la taula, igual que des del DBeaver (dreta):
 ![](T4_5_2_1.png) | ![](T4_5_2_2.png)  
 ---|---  
   
-Sentències que retornen dades
+<u>Sentències que retornen dades</u>
+=============================
 
 Les executem amb el mètode **executeQuery**. Servirà per a la sentència
 **SELECT** , que és la de consulta.
@@ -277,6 +277,7 @@ passant per paràmetre el número de columna que desitgem obtenir. El nom dels
 mètodes comença per **get** seguit del **nom del tipus de dades**. Així, si
 volem recuperar la segona columna, sabent que és una dada de tipus String
 caldrà executar:
+
 ```
 rs.getString(2)
 ```
@@ -291,8 +292,7 @@ resulten ser el codi numèric de l'Institut i el seu nom.
 Coieu el següent codi en un fitxer Kotlin anomenat
 **Exemple_4_12_consultaPostgreSQL.kt** :
 
-    
-    
+       
     package exemples
     
     import java.sql.DriverManager
@@ -343,7 +343,8 @@ Copieu el següent codi en un fitxer Kotlin anomenat
         con.close()
     }
 
-```No reutilització de Statement ni ResultSet```
+<u>No reutilització de Statement ni ResultSet</u>
+==============================================
 
 És un error prou habitual per inesperat el fet d'intentar reutilitzar un
 mateix **ResultSet** per a arreplegar més d'una consulta. I el mateix amb el
@@ -358,7 +359,8 @@ cadascuna**. En Kotlin ho podrem aconseguir declarant-los sempre com a **val**
 No hi ha problema en utilitzar el mateix Statement per a moltes consultes de
 les que **no retornen dades**.
 
-```Assegurar l'alliberament de recursos```
+<u>Assegurar l'alliberament de recursos</u>
+===========================================
 
 Les instàncies de **Connection** i les de **Statement** guarden, en memòria,
 molta informació relacionada amb les execucions realitzades. A més, mentre
@@ -392,39 +394,22 @@ tancament entre sentències **_try-catch_** dins del _**finally**
 _
 ```
 try{
-
 //_sentències que poden llançar una excepció_
-
 ...
-
 } catch (ex: SQLException) {
-
 // _captura i tractament de l'excepció_
-
 ...
-
 }finally{
-
-try {
-
-stm1.close()
-
-} catch (ex: SQLException) {...}
-
-try {
-
-stm2.close()
-
-} catch (ex: SQLException) {...}
-
-...
-
-try {
-
-con.close()
-
-} catch (ex: SQLException) {...}
-
+  try {
+  stm1.close()
+  } catch (ex: SQLException) {...}
+  try {
+  stm2.close()
+  } catch (ex: SQLException) {...}
+  ...
+  try {
+  con.close()
+  } catch (ex: SQLException) {...}
 }
 ```
 De vegades, l’error en un tancament es produeix perquè l’objecte mai ha
@@ -432,23 +417,19 @@ arribat a instanciar-se i, per tant, la variable presenta un valor _null_ , o
 perquè ja ha estat tancat amb anterioritat. Ambdós casos són previsibles, i es
 pot evitar l'error fent servir una instrucció condicional que evite tancar-lo
 quan ja estava tancat.
+
 ```
 ...
-
-try {
-
-//_Assegurem que la connexió està instanciada i oberta_
-
-if (con!=null && !con.isClosed() {
-
-// _tanquem la connexió_
-
-con.close()
-
-}
-
-} catch (ex: SQLException) { ... }
+  try {
+    //_Assegurem que la connexió està instanciada i oberta_
+    if (con!=null && !con.isClosed() {
+      // _tanquem la connexió_
+      con.close()
+    }
+  } catch (ex: SQLException) { ... }
 ```
+
+
 ## 5.3 - Exemple
 
 A continuació posarem un exemple molt senzill, el dels empleats, en el qual
@@ -456,14 +437,15 @@ primer crearem la taula per a guardar les dades, després introduirem les
 dades, les modificarem, i per últim les consultarem. D'aquesta manera podrem
 veure tots els exemples de sentències SQL.
 
+
 Les dades són les mateixes que en altres ocasions:
 
-**num** | **nom** | **depart** | **edat** | **sou**  
----|---|---|---|---  
-1 | Andreu | 10 | 32 | 1000.00  
-2 | Bernat | 20 | 28 | 1200.00  
-3 | Claudia | 10 | 26 | 1100.00  
-4 | Damià | 10 | 40 | 1500.00  
+  **num** | **nom** | **depart** | **edat** | **sou**  
+  ---|---|---|---|---  
+  1 | Andreu | 10 | 32 | 1000.00  
+  2 | Bernat | 20 | 28 | 1200.00  
+  3 | Claudia | 10 | 26 | 1100.00  
+  4 | Damià | 10 | 40 | 1500.00  
   
 La clau principal serà el camp num de tipus enter. El nom serà de text, el
 departament i l'edat també enters, mentre que el sou serà real.
@@ -473,21 +455,18 @@ cadascú guardarà en un fitxer seu les dades. Haureu de cuidar la ruta, que
 siga on voleu guardar la vostra Base de Dades. Si no poseu res en la ruta, es
 guardarà en el directori actiu, que és l'arrel del projecte.
 
-```Creació de la taula```
+<u>Creació de la taula</u>
+=======================
 
 La sentència SQL que crea la taula en una Base de Dades SQLite serà així:
+
 ```
 CREATE TABLE EMPLEATS (
-
-num INTEGER CONSTRAINT cp_emp PRIMARY KEY,
-
-nom TEXT,
-
-depart INTEGER,
-
-edat INTEGER,
-
-sou REAL );
+  num INTEGER CONSTRAINT cp_emp PRIMARY KEY,
+  nom TEXT,
+  depart INTEGER,
+  edat INTEGER,
+  sou REAL );
 ```
 Hem d'observar que el mètode del **Statement** a utilitzar és
 **executeUpdate()** , ja que la sentència de creació no torna res (no és un
@@ -522,7 +501,8 @@ Copieu el següent codi en un fitxer Kotlin anomenat
 
 Si voleu veure el resultat, podeu fer-ho des del DBeaver.  
 
-```Inserció de dades```
+<u>Inserció de dades</u>
+=======================
 
 També volem introduir les dades que es poden veure a la taula anterior.
 Crearem un **Statetement** que reutilitzarem per anar escrivint totes les
@@ -559,7 +539,8 @@ Copieu el següent codi en un fitxer Kotlin anomenat
 Ara sí que és un bon moment per a consultar la taula des del DBeaver. Si en
 ell ja teníeu oberta la taula, haureu de refrescar.
 
-```Modificació de dades```
+<u>Modificació de dades</u>
+===========================
 
 Ara modificarem les dades. Senzillament augmentem el sou de tots els empleats
 en un 5%. I també modifiquem el departament de l'empleat 3, posant-li el
@@ -587,7 +568,8 @@ Copieu el següent codi en un fitxer Kotlin anomenat
         con.close()
     }
 
-```Consultar les dades```
+<u>Consultar les dades</u>
+===========================
 
 Vegem de quina manera podem mostrar per pantalla tots els empleats del que
 cobren més de 1.100€. Ara el mètode que utilitzarem és **executeQuery()** , ja
@@ -630,7 +612,6 @@ Podeu observar com es pot usar un bucle **while** per obtenir el valor de
 totes les files retornades. També podeu veure els diferents mètodes que
 retornen les dades de cada columna en funció del tipus: **getInt()** ,
 **getString()** , **getDouble()** , ...
-
 
 Llicenciat sota la  [Llicència Creative Commons Reconeixement CompartirIgual
 2.5](http://creativecommons.org/licenses/by-sa/2.5/)

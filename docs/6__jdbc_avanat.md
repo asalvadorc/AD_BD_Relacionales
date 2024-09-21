@@ -39,32 +39,29 @@ I també ens dóna informació un altre objecte, **ResultSetMetaData** , que
 obtindrà la informació a partir d'un **ResultSet**. Veurem els dos per
 separat.
 
-```DatabaseMetaData```
+<u>DatabaseMetaData</u>
+=====================
 
 És l'adequat quan volem veure les taules i vistes que tenim en la Base de
 Dades, així com l'estructura de cadascuna d'elles.
 
 Mirem primer els mètodes més interessants que té:
 
-Valor tornat | Nom del mètode | Descripció  
+**Valor tornat** | **Nom del mètode** | **Descripció**  
 ---|---|---  
 String | **getDatabaseProductName()** | Torna el nom del SGBD  
 String | **getDriverName()** | Torna el driver JDBC utilitzat  
 String | **getURL()** | Torna la URL de la connexió   
-String | **getUserName()** | Torna el nom de l'usuari que s'ha connectat   
-ResultSet | **getTables(cataleg, esquema, nom, tipus)** | Torna informació de totes les taules que coincideixen amb els patrons o criteris.  
-Si posem null a tots els paràmetres ens tornarà totes les taules i vistes  
-ResultSet | **getColumns(**cataleg, esquema, nom, nom_columna)**** | Torna informació de les columnes de la taula especificada en el tercer paràmetre  
-(que està en el catàleg i en l'esquema, si els posem).  
-El quart paràmetre servirà per a seleccionar les columnes que coincidesquen
-amb el patró (null per a totes)  
+String | **getUserName()** | Torna el nom de l'usuari que s'ha connectat 
+ResultSet | **getTables(cataleg, esquema, nom, tipus)** | Torna informació de totes les taules que coincideixen <br>amb els patrons o criteris. Si posem null a tots els <br>paràmetres ens tornarà totes les taules i vistes  
+ResultSet | **getColumns(cataleg, esquema, nom, nom_colu)** | Torna informació de les columnes de la taula <br>especificada en el tercer paràmetre (que està en el <br>catàleg i en l'esquema, si els posem). El quart<br> paràmetre servirà per a seleccionar les columnes <br>que coincidesquen amb el patró (null per a totes)  
 ResultSet  | **getPrimaryKeys(cataleg, esquema, taula)** | Torna la llista de camps que formen la clau principal   
-ResultSet | **getImportedKeys(cataleg, esquema, taula)** | Torna una llista amb les claus externes definides en aquesta taula   
-ResultSet | **getExportedKeys(cataleg, esquema, taula)** | Torna una llista amb les claus externes que apunten a aquesta taula   
+ResultSet | **getImportedKeys(cataleg, esquema, taula)** | Torna una llista amb les claus externes definides en <br>aquesta taula   
+ResultSet | **getExportedKeys(cataleg, esquema, taula)** | Torna una llista amb les claus externes que apunten a<br> aquesta taula   
   
 Per poder comprovar tot l'anterior, farem un programa que ens done informació
 de la Base de Dades, una relació de les taules i vistes que té.
-
+>
 Posteriorment acceptarà un número, i traurà la informació de la taula
 corresponent amb aquest format: columnes, tipus, clau principal, claus
 externes.
@@ -145,7 +142,8 @@ Copieu elsegüent codi en un fitxer Kotlin anomenat
         con.close()
     }
 
-```ResultSetMetaData```
+<u>ResultSetMetaData</u>
+=========================
 
 Una vegada executada una sentència SELECT de SQL que ja tenim el resultat en
 un ResultSet, podem accedir també a meta dades d'aquest ResultSet, obtenint
@@ -240,7 +238,7 @@ cap avant, fent un recorregut seqüencial de les dades.
 
 Però aquesta manera de funcionar, que es diu **TYPE_FORWARD_ONLY** i que és
 l'opció per defecte per a obrir un ResultSet, no és l'única. Aquestos són els
-tipus de ResultSet que hi ha:****
+tipus de ResultSet que hi ha:
 
   * **TYPE_FORWARD_ONLY** : és el tipus utilitzat fins el moment, i és el tipus per defecte. El ResultSet només pot avançar cap avant.
   * **TYPE_SCROLL_INSENSITIVE** : El ResultSet pot avançar cap avant i cap arrere, fins i tot pot anar a una posició absoluta (directament, sense passar per les anteriors). El ResultSet no és sensible als canvis fets en les dades que han proporcionat aquest resultat, és a dir, ens mostra les dades que hi havia en el moment d'executar la consulta, sense poder mostrar possibles canvis posteriors.
@@ -663,7 +661,8 @@ facilita la creació de _dades clau_ i índexs temporals de manera que siga
 possible anticipar-se a la demanda o disposar de les dades de forma molt més
 ràpida.
 
-```Temps de vida d'una connexió```
+<u>Temps de vida d'una connexió</u>
+===================================
 
 L’establiment d’una connexió és un procediment molt lent, tant a la part
 client com a la part servidor.
@@ -690,7 +689,8 @@ determinada de temps, o es pot fer servir el criteri de mantenir un número
 màxim de connexions obertes, tancant les més antigues o les més inactives quan
 se sobrepasse el límit.
 
-```Sentències predefinides```
+<u>Sentències predefinides</u>
+================================
 
 JDBC disposa d’un objecte derivat del **Statement** que s’anomena
 **PreparedStatement**., a la qual se li passa la sentència SQL en el moment de

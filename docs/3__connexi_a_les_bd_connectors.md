@@ -50,7 +50,8 @@ d’aplicacions, utilitats, biblioteques, protocols i llenguatges, situats tant
 a la part servidor com a la part client, que permeten connectar-se remotament
 a una base de dades per configurar-la o explotar-ne les seues dades.
 
-```L'arribada dels estàndards```
+<u>L'arribada dels estàndards</u>
+================================
 
 Inicialment, cada empresa desenvolupadora d’un SGBD implementava les seues
 solucions específiques per al seu sistema, però prompte es van donar compte
@@ -96,7 +97,8 @@ proporcionar els _drivers_ de connectivitat, i els llenguatges de programació
 més importants van desenvolupar biblioteques específiques per suportar l’API
 ODBC.
 
-```La situació actual```
+<u>La situació actual</u>
+========================
 
 Actualment, ODBC continua sent una adequada manera de connectar als SGDB
 Relacionals. El seu desenvolupament segueix liderat per Microsoft, però
@@ -160,7 +162,8 @@ d’haver de treballar amb un sistema que no en tinga, si disposa de controlador
 ODBC, podrem fer servir el pont JDBC-ODBC per aconseguir la connexió des de
 Java.
 
-```Arquitectura JDBC```
+<u>Arquitectura JDBC</u>
+=======================
 
   * La biblioteca estàndard **JDBC** conté un gran nombre d’interfícies _sense_ les classes que les implementen.
   * Els controladors o drivers dels SGBD concrets (i que els proporciona el fabricant del SGBD) són els que han d'implementar les interfícies anteriors i així accedir a les seues dades amb les particularitats que puga tenir el SGBD en concret.
@@ -192,7 +195,8 @@ mateixa aplicació a més d'un SGBD. Això és possible perquè:
   * Java permet carregar en memòria qualsevol classe a partir del seu nom, i així carregar el o els controladors que necessitem. Es fa amb la sentència **Class.forName** (“nom_de_la_Classe”).
   * La classe **DriverManager** (de l’API JDBC) és capaç de seleccionar el driver adequat d'entre tots els que estiguen carregats en memòria, sense necessitat d’indicar-li el _driver_ específic que cal fer servir.
 
-```Tipus de controladors```
+<u>Tipus de controladors</u>
+============================
 
 JDBC distingeix quatre tipus de controladors:
 

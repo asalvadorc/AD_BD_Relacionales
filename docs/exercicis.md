@@ -3,9 +3,9 @@
 Els següents exercicis, posa'ls tots en un paquet del projecte **Tema4**
 anomenat **e****xercicis**
 
-![](icon_activity.gif)
 
-## Exercici 4_1
+
+## ![](icon_activity.gif) Exercici 4_1
 
 Crea un programa Kotlin anomenat **Ex4_1_CreaTaulesRuta.kt** que cree les
 taules necessàries per a guardar les dades de les rutes en una Base de Dades
@@ -19,9 +19,8 @@ Han de ser 2 taules:
 Adjunta tot el projecte, i també la Base de Dades **Rutes.sqlite**(normalment
 estarà dins del projecte)
 
-![](icon_activity.gif)
 
-## Exercici 4_2
+## ![](icon_activity.gif) Exercici 4_2
 
 Crea una altre programa anomenat **Ex4_2_****PassarRutesObjSQLite.kt** que
 passe les dades del fitxer **Rutes.obj** a les taules de **Rutes.sqlite**.
@@ -41,9 +40,8 @@ Concretament en el trasvassament d'informació:
 Adjunta tot el projecte, i també la Base de Dades **Rutes.sqlite** , que
 normalment estarà situada dins del projecte
 
-![](icon_activity.gif)
 
-## Exercici 4_3
+## ![](icon_activity.gif) Exercici 4_3
 
 Crea un programa anomenat **Ex4_3_****VisRutes_SQLite.kt** , que mostre les
 rutes amb un aspecte similar a l'**Exercici 3_4** , però accedint ara a les
@@ -116,9 +114,8 @@ Ací teniu l'esquelet del programa.
     	}
     }
 
-![](icon_activity.gif)
 
-## Exercici 4_4
+## ![](icon_activity.gif) Exercici 4_4
 
 En aquest exercici anem a practicar la creació d'una classe que encapsule
 pràcticament tot el tractament de la Base de Dades, per a fer transparent el
@@ -144,7 +141,8 @@ mètodes **buscar()** i **llistat()** , comenteu la línia **gRutes.inserir(r)**
 per a no inserir-la més vegades.
 
     
-    
+
+<pre><code font-size: 10px;>
     fun main(args: Array<String>) {
     	// Creació del gestionador
     	val gRutes = GestionarRutesBD()
@@ -172,10 +170,11 @@ per a no inserir-la més vegades.
     
     	gRutes.close()
     }
+</code></pre>
+ 
 
-![](icon_activity.gif)
-
-## Exercici 4_5 (voluntari)
+<!--
+## ![](icon_activity.gif) Exercici 4_5 (voluntari)
 
 Crea el segünet mètode en la classe **GestionarRutesBD** :
 
@@ -619,7 +618,7 @@ altres. I també activar els JTextField i el JTable.
             FinestraAvancat().isVisible = true
         }
     }
-
+-->
 
 Llicenciat sota la  [Llicència Creative Commons Reconeixement CompartirIgual
 2.5](http://creativecommons.org/licenses/by-sa/2.5/)
