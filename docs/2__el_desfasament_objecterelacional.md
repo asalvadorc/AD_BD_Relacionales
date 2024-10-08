@@ -180,10 +180,10 @@ llibres de l'autor. Però no les hem posades per fer l'exemple més senzill.
 Si ens plantegem guardar els **objectes** d’una aplicació en un SGBD
 **Relacional** , el principal problema que trobarem és que es tracta de
 conceptes diferents, els objectes i les taules, i estan centrats en aspectes
-també diferents. El Model Entitat-Relació (que tindrà una traducció directa al
+també diferents. El **Model Entitat-Relació** (que tindrà una traducció directa al
 Model Relacional) es troba fortament centrat en les dades i en l’estructura
 que cal donar a aquestes dades per poder guardar-les i recuperar-les. En canvi
-el Model Orientat a Objectes es troba centrat en els objectes, entesos com a
+el **Model Orientat a Objectes** es troba centrat en els objectes, entesos com a
 agrupacions de dades i també com a un conjunt de processos de canvi, que
 afecten aquestes dades.
 
@@ -203,11 +203,11 @@ externa en el llibre, sinó que guardem una referència a la mateixa editorial,
 a l'objecte editorial.
 
 Aquestes diferències constitueixen el que en el món de la programació es
-coneix com a ** _desfasament objecte-relacional_**. Aquest desfasament ens
+coneix com a **desfasament objecte-relacional**. Aquest desfasament ens
 obliga, quan decidim treballar conjuntament amb els dos models, un SGBD
 Relacional per a guardar les dades i un llenguatge Orientat a Objectes com per
 exemple Java o Kotlin, a codificar implementacions extres que funcionen a mode
-d’adaptadors. És a dir que hem de _**convertir**_ o _**transformar**_ els
+d’adaptadors. És a dir que hem de **convertir** o **transformar** els
 objectes en taules i a l'inrevés.
 
 Mirem l'exemple comentat tant en el Model Relacional com en l'Orientat a

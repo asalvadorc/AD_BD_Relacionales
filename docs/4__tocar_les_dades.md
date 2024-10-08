@@ -52,8 +52,8 @@ falta especificar:
   * Les dades de connexió, que seran: 
     * Servidor (host): **89.36.214.106**
     * Port: **5432** (és el port per defecte)
-    * Usuari: **geo_ad******
-    * Contrasenya: **geo_ad******
+    * Usuari: **geo_ad**
+    * Contrasenya: **geo_ad**
     * Base de dades: **geo_ad**
   * En el moment que demana pel controlador (driver) de PostgreSQL, apretar a baixar. Serà un de tipus IV. Açò només serà necessari la primera vegada que connectem a PostgreSQL.
 
@@ -161,11 +161,11 @@ treballar amb les seues Bases de Dades.
 Però hi ha un altre software, lliure, anomenat **DBeaver** que ens permet
 connectar a quasi totes les Bases de Dades Relacionals, i fins i tot a moltes
 BD NoSQL en la seua versió comercial (Enterprise Edition). Nosaltres
-utilitzarem la que sí que és de codi obert, la Community Edition.****
+utilitzarem la que sí que és de codi obert, la Community Edition.
 
 Ens ho podem baixar des de la seua pàgina de descàrregues,
 <https://dbeaver.io/download>. En el moment de fer aquestos apunts van per la
-versió 21.2.2
+versió 24.2.2
 
 ![](T4_4_2_1.png)
 

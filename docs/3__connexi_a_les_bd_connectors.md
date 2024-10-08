@@ -273,7 +273,7 @@ diferents: **PostgreSQL** , **Oracle** , **MySQL** i **SQLite**
 Els drivers o controladors (tots de tiups IV) us els podeu baixar sense
 problemes. Són fàcils de trobar, únicament amb un buscador posar **jdbc** i el
 Sistema Gestor de Bases de Dades (per exemple **jdbc postgresql**). De tota
-manera, per més comoditat, teniu **una carpeta en el curs de Moodle amb tots
+manera, per més comoditat, teniu **una carpeta en el curs de Aules amb tots
 els drivers** que ens fan falta.
 
 

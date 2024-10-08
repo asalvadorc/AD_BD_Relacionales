@@ -121,8 +121,8 @@ error:
 
 que com es veu, ens està indicant que no ha pogut trobar el driver per a eixa
 URL. Senzillament incorporarem el driver de PostgreSQL en les **F4 - > Modules
--> Dependencies**`****  
-`
+-> Dependencies**
+
 
   * **MySQL**
 
