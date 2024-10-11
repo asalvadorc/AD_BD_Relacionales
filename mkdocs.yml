@@ -12,7 +12,7 @@ theme:
 
 nav:
 
-- UD4. Bases de Dades Relacionals:
+- Tema 4. Bases de Dades Relacionals:
   - 1 - Les Bases de Dades Relacionals: 1__les_bases_de_dades_relacionals.md
   - 2 - El desfasament Objecte-Relacional: 2__el_desfasament_objecterelacional.md
   - 3 - Connexió a les B. Connectors: 3__connexi_a_les_bd_connectors.md
