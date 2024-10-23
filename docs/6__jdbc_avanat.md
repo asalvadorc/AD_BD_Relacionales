@@ -39,8 +39,8 @@ I també ens dóna informació un altre objecte, **ResultSetMetaData** , que
 obtindrà la informació a partir d'un **ResultSet**. Veurem els dos per
 separat.
 
-<u>DatabaseMetaData</u>
-=====================
+**<u>DatabaseMetaData</u>**
+
 
 És l'adequat quan volem veure les taules i vistes que tenim en la Base de
 Dades, així com l'estructura de cadascuna d'elles.
@@ -142,8 +142,8 @@ Copieu elsegüent codi en un fitxer Kotlin anomenat
         con.close()
     }
 
-<u>ResultSetMetaData</u>
-=========================
+**<u>ResultSetMetaData</u>**
+
 
 Una vegada executada una sentència SELECT de SQL que ja tenim el resultat en
 un ResultSet, podem accedir també a meta dades d'aquest ResultSet, obtenint
@@ -661,8 +661,8 @@ facilita la creació de _dades clau_ i índexs temporals de manera que siga
 possible anticipar-se a la demanda o disposar de les dades de forma molt més
 ràpida.
 
-<u>Temps de vida d'una connexió</u>
-===================================
+**<u>Temps de vida d'una connexió</u>**
+
 
 L’establiment d’una connexió és un procediment molt lent, tant a la part
 client com a la part servidor.
@@ -689,8 +689,8 @@ determinada de temps, o es pot fer servir el criteri de mantenir un número
 màxim de connexions obertes, tancant les més antigues o les més inactives quan
 se sobrepasse el límit.
 
-<u>Sentències predefinides</u>
-================================
+**<u>Sentències predefinides</u>**
+
 
 JDBC disposa d’un objecte derivat del **Statement** que s’anomena
 **PreparedStatement**., a la qual se li passa la sentència SQL en el moment de
