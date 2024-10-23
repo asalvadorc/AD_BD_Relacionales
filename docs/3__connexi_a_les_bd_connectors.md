@@ -22,6 +22,7 @@ consistent, però a base de ser molt poc operatiu:
 Per a poder ser més operatius, calia desvincular els llenguatges de
 programació dels Sistemes Gestors de Bases de Dades utilitzant uns estàndars
 de connexió.
+---
 
 ## 3.1 - ODBC
 
@@ -50,8 +51,8 @@ d’aplicacions, utilitats, biblioteques, protocols i llenguatges, situats tant
 a la part servidor com a la part client, que permeten connectar-se remotament
 a una base de dades per configurar-la o explotar-ne les seues dades.
 
-<u>L'arribada dels estàndards</u>
-================================
+**<u>L'arribada dels estàndards</u>**
+
 
 Inicialment, cada empresa desenvolupadora d’un SGBD implementava les seues
 solucions específiques per al seu sistema, però prompte es van donar compte
@@ -97,8 +98,9 @@ proporcionar els _drivers_ de connectivitat, i els llenguatges de programació
 més importants van desenvolupar biblioteques específiques per suportar l’API
 ODBC.
 
-<u>La situació actual</u>
-========================
+
+**<u>La situació actual</u>**
+
 
 Actualment, ODBC continua sent una adequada manera de connectar als SGDB
 Relacionals. El seu desenvolupament segueix liderat per Microsoft, però
@@ -125,8 +127,7 @@ això sí, a costa d’un considerable nombre de línies de codi necessàries pe
 adaptar-se a la lògica de cada aplicació. És per això que sobre la base de
 l’ODBC han sorgit altres alternatives de persistència de més alt nivell. Per
 exemple, Microsoft ha desenvolupat OLE DB o ADO.NET. Aquest últim possibilita
-ja els objectes per a qualsevol tipus d’aplicació basada en la plataforma
-.NET.
+ja els objectes per a qualsevol tipus d’aplicació basada en la plataforma .NET.
 
 ## 3.2 - JDBC
 

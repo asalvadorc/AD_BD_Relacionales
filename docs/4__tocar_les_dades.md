@@ -43,8 +43,8 @@ Des d'aquesta finestra podrem controlar les connexions a Bases de Dades i
 també els Drivers JDBC que ens permeten connectar. Com hem comentat serà
 independent dels projectes Java o Kotlin
 
-<u>Connexió a PostgreSQL</u>
-===========================
+**<u>Connexió a PostgreSQL</u>**
+
 
 Com a primer exemple de connexió, intentarem connectar a PostgreSQL. Farà
 falta especificar:
@@ -74,8 +74,8 @@ base de dades a la qual ens volem connectar.
 ```
   jdbc:postgresql://89.36.214.106:5432/geo_ad
 ```
-<u>Connexió a MySQL</u>
-=====================
+**<u>Connexió a MySQL</u>**
+
 
 
 Repetim el procés per a MySQL. El servidor està en la mateixa màquina que
@@ -101,8 +101,8 @@ que en el nostre exemple queda:
 ```
 jdbc:mysql://89.36.214.106:3306/factura
 ```
-<u>Connexió a SQLite</u>
-=======================
+**<u>Connexió a SQLite</u>**
+
 
 SQLite és un SGBD molt diferent als anteriors. En tots els anteriors
 s'utilitza l'arquitectura client-servidor. I per tant el servidor de Base de
@@ -148,6 +148,7 @@ tipus de dades que utilitza són:
 Des de l'entorn d'IntelliJ podrem visualitzar les taules i fins i tot crear-
 les, amb SQL.
 
+
 ## 4.2 - DBeaver
 
 Ja hem vist la utilitat d'inspeccionar les Bases de Dades que ens proporciona
@@ -186,8 +187,8 @@ primera pantalla ja tenim els 3 que volem nosaltres, però hi ha molts més
 Quan li faça falta un Driver (que per cert seran drivers JDBC) ens preguntarà
 de baixar-lo automàticament, per tant serà comodíssim.
 
-<u>PostgreSQL</u>
-================
+**<u>PostgreSQL</u>**
+
 
 Aquestes són les dades de connexió que farem:
 
@@ -217,8 +218,8 @@ reservades i també les taules i camps de la nostra BD
 
 ![](T4_4_2_9.png)
 
-<u>MySQL</u>
-===========
+**<u>MySQL</u>**
+
 
   * Nom de la connexió: el que vulgueu, per exemple **Connexio MySQL factura**
   * Servidor: **89.36.214.106**
@@ -233,8 +234,8 @@ La seua utilització és igual de fàcil que en l'anterior cas.
 
 ![](T4_4_2_11.png)
 
-<u>SQLite</u>
-============
+**<u>SQLite</u>**
+
 
 La connexió a SQLite és més senzilla i per tant ens preguntarà menys coses:
 
