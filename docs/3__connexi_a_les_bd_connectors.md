@@ -268,8 +268,8 @@ segueixen mantenint també els dels altres tipus.
 Els tipus desitjables són el tipus III i sobretot el **tipus IV** , ja que
 d'aquesta manera no ens fa falta instal·lar res per a poder connectar.
 
-En aquest tema intentarem connectar a 4 Sistemes Gestors de Bases de Dades
-diferents: **PostgreSQL** , **Oracle** , **MySQL** i **SQLite**
+En aquest tema intentarem connectar a 3 Sistemes Gestors de Bases de Dades
+diferents: **PostgreSQL** , **MySQL** i **SQLite**
 
 Els drivers o controladors (tots de tiups IV) us els podeu baixar sense
 problemes. Són fàcils de trobar, únicament amb un buscador posar **jdbc** i el

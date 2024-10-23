@@ -13,10 +13,10 @@ SQLite anomenada **Rutes.sqlite**.
 
 Han de ser 2 taules:
 
-  * **RUTES** : que contindrà tota la informació del conjunt de la ruta. La clau principal s'anomenarà **num_r** (entera). També guardarà el nom de la ruta (**nom_r**), desnivell ****(**desn**) i desnivell acumulat (**desn_ac**). Els tipus d'aquestos tres camps últims seran de text, enter i enter respectivament.
+  * **RUTES** : que contindrà tota la informació del conjunt de la ruta. La clau principal s'anomenarà **num_r** (entera). També guardarà el nom de la ruta (**nom_r**), desnivell (**desn**) i desnivell acumulat (**desn_ac**). Els tipus d'aquestos tres camps últims seran de text, enter i enter respectivament.
   * **PUNTS** : que contindrà la informació dels punts individuals de les rutes. Contindrà els camps **num_r** (número de ruta: enter) , **num_p** (número de punt: enter), **nom_p** (nom del punt: text) , **latitud** (número real) i **longitud** (número real). La clau principal serà la combinació **num_r + num_p** . Tindrà una **clau externa** (**num_r**) que apuntarà a la clau principal de **RUTES**.
 
-Adjunta tot el projecte, i també la Base de Dades **Rutes.sqlite**(normalment
+Adjunta tot el projecte, i també la Base de Dades **Rutes.sqlite** (normalment
 estarà dins del projecte)
 
 

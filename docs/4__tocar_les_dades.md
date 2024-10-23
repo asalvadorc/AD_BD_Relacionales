@@ -130,7 +130,7 @@ ni quin usuari s'ha de connectar. Haurem de dir el fitxer amb la ruta on està
 
 **URL de SQLite**
 ```
-jdbc:sqlite:_ruta_del_fitxer_sqlite_
+jdbc:sqlite:ruta_del_fitxer_sqlite
 ```
 
 
@@ -209,8 +209,8 @@ l'estil del Model Entitat-Relació (encara que en realitat representa el Model
 Relacional) on intervé la taula, és a dir, ens mostra les seues claus
 externes.
 
-![](T4_4_2_6.png) | ![](T4_4_2_7.png) | ![](T4_4_2_8.png)  
----|---|---  
+![](T4_4_2_6.png) | ![](T4_4_2_7.png)  | ![](T4_4_2_8.png)
+---|---|--- 
   
 Finalment observem com també podem executar sentències SQL de forma molt
 còmode, i on ens dóna molta ajuda per escriure correctament les paraules

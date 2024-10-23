@@ -4,7 +4,7 @@ Ara veurem els elements bàsics de l’API JDBC que permeten a les aplicacions
 Java o Kotlin comunicar-se amb un SGBD fent servir el llenguatge SQL. Cal que
 disposeu del connector **JDBC** dels 3 SGDB que anem a utilitzar:
 **PostgreSQL** , **MySQL** i **SQLite**. Afegirem els 3 connectors a les
-biblioteques del projecte.**** També serà necessari connectar des de IntelliJ
+biblioteques del projecte. També serà necessari connectar des de IntelliJ
 amb la utilitat que ens ofereix per a veure les Bases de Dades: **View - >
 Tool Windows -> Database**, si no disposeu del **DBeaver** (o clients
 espacífics de cada SGBD).
@@ -17,7 +17,7 @@ comoditat us pose ací els enllaços:
   * MySQL: <https://jar-download.com/artifacts/mysql/mysql-connector-java>
   * SQLite: <https://jar-download.com/artifacts/org.xerial/sqlite-jdbc>
 
-També teniu, per més comoditat, una carpeta en el curs de Moodle amb tots els
+També teniu, per més comoditat, una carpeta en el curs de Aules amb tots els
 drivers que ens fan falta
 
 Per tal de poder practicar la connexió i accedir a les dades, tenim una Bases
@@ -54,7 +54,7 @@ Classe | Descripció
   
 ## 5.1 - Establiment de la connexió
 
-Un objecte de la classe **Connection**(de l'API JDBC) representarà una
+Un objecte de la classe **Connection** (de l'API JDBC) representarà una
 connexió a la Base de Dades d'un determinat SGBD. Haurem de tenir el
 controlador del SGBD inclós en el projecte.
 
@@ -199,7 +199,6 @@ La diferència entre els dos mètodes que executen sentències SQL és:
 
 
 <u>Sentències que no retornen dades</u>
-=================================
 
 
 Les executem amb el mètode **executeUpdate**. Seran **totes** les sentències
@@ -251,7 +250,7 @@ existeix la taula, igual que des del DBeaver (dreta):
 ---|---  
   
 <u>Sentències que retornen dades</u>
-=============================
+
 
 Les executem amb el mètode **executeQuery**. Servirà per a la sentència
 **SELECT** , que és la de consulta.
@@ -344,7 +343,7 @@ Copieu el següent codi en un fitxer Kotlin anomenat
     }
 
 <u>No reutilització de Statement ni ResultSet</u>
-==============================================
+
 
 És un error prou habitual per inesperat el fet d'intentar reutilitzar un
 mateix **ResultSet** per a arreplegar més d'una consulta. I el mateix amb el
@@ -360,7 +359,7 @@ No hi ha problema en utilitzar el mateix Statement per a moltes consultes de
 les que **no retornen dades**.
 
 <u>Assegurar l'alliberament de recursos</u>
-===========================================
+
 
 Les instàncies de **Connection** i les de **Statement** guarden, en memòria,
 molta informació relacionada amb les execucions realitzades. A més, mentre
@@ -456,7 +455,7 @@ siga on voleu guardar la vostra Base de Dades. Si no poseu res en la ruta, es
 guardarà en el directori actiu, que és l'arrel del projecte.
 
 <u>Creació de la taula</u>
-=======================
+
 
 La sentència SQL que crea la taula en una Base de Dades SQLite serà així:
 
@@ -502,12 +501,12 @@ Copieu el següent codi en un fitxer Kotlin anomenat
 Si voleu veure el resultat, podeu fer-ho des del DBeaver.  
 
 <u>Inserció de dades</u>
-=======================
+
 
 També volem introduir les dades que es poden veure a la taula anterior.
 Crearem un **Statetement** que reutilitzarem per anar escrivint totes les
 sentències **INSERT**. Recordeu que no és problema la reutilització si gastem
-el **executeUpdate()**. ****
+el **executeUpdate()**.
 
 Copieu el següent codi en un fitxer Kotlin anomenat
 **Exemple_4_22_EmpleatsInserir.kt** :
@@ -540,7 +539,7 @@ Ara sí que és un bon moment per a consultar la taula des del DBeaver. Si en
 ell ja teníeu oberta la taula, haureu de refrescar.
 
 <u>Modificació de dades</u>
-===========================
+
 
 Ara modificarem les dades. Senzillament augmentem el sou de tots els empleats
 en un 5%. I també modifiquem el departament de l'empleat 3, posant-li el
@@ -569,7 +568,7 @@ Copieu el següent codi en un fitxer Kotlin anomenat
     }
 
 <u>Consultar les dades</u>
-===========================
+
 
 Vegem de quina manera podem mostrar per pantalla tots els empleats del que
 cobren més de 1.100€. Ara el mètode que utilitzarem és **executeQuery()** , ja
