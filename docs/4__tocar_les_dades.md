@@ -57,7 +57,7 @@ falta especificar:
     * Base de dades: **geo_ad**
   * En el moment que demana pel controlador (driver) de PostgreSQL, apretar a baixar. Serà un de tipus IV. Açò només serà necessari la primera vegada que connectem a PostgreSQL.
 
-    <iframe src="https://slides.com/aliciasalvador/ad_t4_connexiosqlite/embed" width="576" height="420" title="Copy of AD_T4_ConnexioSQLite" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <iframe src="https://slides.com/aliciasalvador/ad_t4_connexipostgresql/embed" width="576" height="420" title="Copy of AD_T4_ConnexiPostgreSQL" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 De la configuració anterior podem observar la **URL** de connexió que va a
 continuació. És important, perquè després quan connectem des dels nostres
