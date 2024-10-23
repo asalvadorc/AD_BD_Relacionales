@@ -61,7 +61,7 @@ ResultSet | **getExportedKeys(cataleg, esquema, taula)** | Torna una llista amb 
   
 Per poder comprovar tot l'anterior, farem un programa que ens done informació
 de la Base de Dades, una relació de les taules i vistes que té.
->
+
 Posteriorment acceptarà un número, i traurà la informació de la taula
 corresponent amb aquest format: columnes, tipus, clau principal, claus
 externes.
@@ -808,7 +808,7 @@ i s’identificaran per la posició que ocupen a la sentència, començant a
 comptar des de l’esquerra i a partir del número 1. El valor dels paràmetres
 s’assignarà fent servir el mètode específic, d’acord amb el tipus de dades a
 assignar. El nom d'aquestos mètodes començarà per **set** i continuarà amb el
-nom del tipus de dades __(exemples:**setString()** , **setInt()** ,
+nom del tipus de dades (exemples:**setString()** , **setInt()** ,
 **setLong()** , **setBoolean()** …). Tots aquestos mètodes segueixen la
 mateixa sintaxi:
 ```
