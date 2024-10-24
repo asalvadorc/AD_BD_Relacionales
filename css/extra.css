@@ -1,0 +1,13 @@
+body, h1, h2, h3, h4, h5, h6, p, li, ul, ol, blockquote {
+    font-size: 14px !important;  /* Ajusta este valor según tus preferencias */
+    line-height: 1.6;  /* Mejora la legibilidad */
+}
+
+p {
+    text-align: justify;
+}
+.md-content {
+    max-width: 100%; /* Ajusta este valor según tus necesidades */
+    margin: 0 auto; /* Centra el contenedor en la página */
+}
+
