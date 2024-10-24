@@ -130,7 +130,7 @@ tindrà **una propietat** , la de **connexió**. Tindrà els següents mètodes:
   * **fun close()** : tancarà la connexió.
   * **fun inserir(r: Ruta)** : Inserirà en la BD les dades corresponents a la ruta passada per paràmetre (inicialment s'aconsella únicament "imprimir" les sentències, per veure si són correctes). El **num_r** ha de ser el posterior a l'última existent, per exemple amb la consulta **SELECT MAX(num_r) FROM RUTES**
   * **fun buscar(i: Int): Ruta** : torna la ruta amb el número passat com a paràmetre.
-  * ****fun llistat(): ArrayList <Ruta>****: torna un ArrayList de Ruta amb totes les rutes de la Base de Dades.
+  * **fun llistat(): ArrayList <Ruta>**: torna un ArrayList de Ruta amb totes les rutes de la Base de Dades.
   * **fun esborrar(i: Int)** : esborra la ruta amb el número passat com a paràmetre (recordeu que els punts de la ruta també s'han d'esborrar)
 
 Per a provar-lo podeu incorporar l'executable **UtilitzarRutesBD.kt**. Hauríeu
