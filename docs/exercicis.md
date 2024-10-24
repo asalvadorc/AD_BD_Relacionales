@@ -129,7 +129,7 @@ tindrà **una propietat** , la de **connexió**. Tindrà els següents mètodes:
   * El constructor de **GestionarRutesBD** : establirà la connexió amb la Base de Dades **Rutes.sqlite** (per comoditat en el directori del projecte). Si no existeixen les taules **RUTES** i **PUNTS** les haurà de crear (podeu utilitzar la sentència **CREATE TABLE IF NOT EXISTS** ...)
   * **fun close()** : tancarà la connexió.
   * **fun inserir(r: Ruta)** : Inserirà en la BD les dades corresponents a la ruta passada per paràmetre (inicialment s'aconsella únicament "imprimir" les sentències, per veure si són correctes). El **num_r** ha de ser el posterior a l'última existent, per exemple amb la consulta **SELECT MAX(num_r) FROM RUTES**
-  * **fun buscar(i: Int): Ruta** : torna la ruta amb el número passat com a paràmetre.
+  * **fun buscar(i: Int): Ruta?** : torna la ruta amb el número passat com a paràmetre.
   * **fun llistat(): ArrayList <Ruta>**: torna un ArrayList de Ruta amb totes les rutes de la Base de Dades.
   * **fun esborrar(i: Int)** : esborra la ruta amb el número passat com a paràmetre (recordeu que els punts de la ruta també s'han d'esborrar)
 
