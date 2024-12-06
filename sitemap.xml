@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://asalvadorc.github.io/AD_BD_Relacionales/</loc>
+         <lastmod>2024-12-06</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/AD_BD_Relacionales/1__les_bases_de_dades_relacionals/</loc>
+         <lastmod>2024-12-06</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/AD_BD_Relacionales/2__el_desfasament_objecterelacional/</loc>
+         <lastmod>2024-12-06</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/AD_BD_Relacionales/3__connexi_a_les_bd_connectors/</loc>
+         <lastmod>2024-12-06</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/AD_BD_Relacionales/4__tocar_les_dades/</loc>
+         <lastmod>2024-12-06</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/AD_BD_Relacionales/5__iniciaci_a_lapi_jdbc/</loc>
+         <lastmod>2024-12-06</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/AD_BD_Relacionales/6__jdbc_avanat/</loc>
+         <lastmod>2024-12-06</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/AD_BD_Relacionales/exercicis/</loc>
+         <lastmod>2024-12-06</lastmod>
+    </url>
+</urlset>

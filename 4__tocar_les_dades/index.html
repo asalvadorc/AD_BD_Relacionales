@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/AD_BD_Relacionales/4__tocar_les_dades/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>4 - "Tocar" les dades - AD - Accés a Dades</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "4 - \"Tocar\" les dades";
+        var mkdocs_page_input_path = "4__tocar_les_dades.md";
+        var mkdocs_page_url = "/AD_BD_Relacionales/4__tocar_les_dades/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">UD 2. Bases de Dades Relacionals</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1__les_bases_de_dades_relacionals/">1 - Les Bases de Dades Relacionals</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2__el_desfasament_objecterelacional/">2 - El desfasament Objecte-Relacional</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3__connexi_a_les_bd_connectors/">3 - Connexió a les B. Connectors</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">4 - "Tocar" les dades</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#41-des-de-intellij">4.1 - Des de IntelliJ</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#42-dbeaver">4.2 - DBeaver</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5__iniciaci_a_lapi_jdbc/">5 - Iniciació a l'API JDBC</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6__jdbc_avanat/">6 - JDBC avançat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">AD - Accés a Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">UD 2. Bases de Dades Relacionals</li>
+      <li class="breadcrumb-item active">4 - "Tocar" les dades</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="4-tocar-les-dades">4 - "Tocar" les dades<a class="headerlink" href="#4-tocar-les-dades" title="Permanent link">&para;</a></h1>
+<p>Abans de començar a treballar la persistència en diferents Bases de Dades
+Relacionals, ens convindrà accedir al Sistema Gestor de Base de Dades per a
+poder veure les dades, treballar amb elles.</p>
+<p>Bàsicament voldrem: </p>
+<ul>
+<li>Poder veure les taules de la Base de Dades</li>
+<li>Poder veure l'estructura de cada taula: camps, tipus dels camps, clau principal, ...</li>
+<li>Poder veure les dades d'una taula, fins i tot poder indroduir noves files, esborrar o modificar de forma còmoda</li>
+<li>Poder editar i executar sentències SQL de forma còmoda</li>
+</ul>
+<p>L'entorn d'IntelliJ ens proporciona una eina ja instal·lada, <strong>Database</strong> , a
+la qual es pot accedir des de <strong>View - &gt; Tool windows -&gt; Database</strong>. És una
+bona manera de poder connectar i "tocar" les dades sense tenir un client
+específic del Sistema Gestor de Base de Dades al qual volem accedir.</p>
+<p>Però està clar que si disposem d'un client específic del SGBD, serà més còmode
+que amb la perspectiva anterior. Per això veurem una eina que ens permet
+connectar a quasi tots els Sistemes Gestors de Bases de Dades Relacionals, i
+per tant amb una única eina podem connectar on vulguem. És el <strong>DBeaver</strong>.</p>
+<h2 id="41-des-de-intellij">4.1 - Des de IntelliJ<a class="headerlink" href="#41-des-de-intellij" title="Permanent link">&para;</a></h2>
+<p>Des dels programes Java o Kotlin podríem connectar ja mateix a les diferents
+BD amb els connectors JDBC, però abans ens faria falta poder veure les taules
+amb les dades i fins i tot administrar aquestes Bases de Dades.</p>
+<p>Això es pot fer des d'IntelliJ sense molt fàcilment, ja que en la nostra
+versió ho tenim integrat per defecte. Utilitzarem els connectors (drivers)
+JDBC, per a connectar a les Bases de Dades, però d'una forma independent dels
+projectes. La manera d'accedir és:</p>
+<p><strong>Wiew -- &gt; Tool Windows --&gt; Database</strong></p>
+<p>i se'ns obrirà una subfinestra a la dreta per a poder "treballar" amb les
+Bases de Dades</p>
+<p><img alt="" src="../T4_4_1_1.png" /></p>
+<p>Des d'aquesta finestra podrem controlar les connexions a Bases de Dades i
+també els Drivers JDBC que ens permeten connectar. Com hem comentat serà
+independent dels projectes Java o Kotlin</p>
+<p><strong><u>Connexió a PostgreSQL</u></strong> </p>
+<p>Com a primer exemple de connexió, intentarem connectar a PostgreSQL. Farà
+falta especificar: </p>
+<ul>
+<li>Les dades de connexió, que seran: <ul>
+<li>Servidor (host): <strong>89.36.214.106</strong></li>
+<li>Port: <strong>5432</strong> (és el port per defecte)</li>
+<li>Usuari: <strong>geo_ad</strong></li>
+<li>Contrasenya: <strong>geo_ad</strong></li>
+<li>Base de dades: <strong>geo_ad</strong></li>
+</ul>
+</li>
+<li>
+<p>En el moment que demana pel controlador (driver) de PostgreSQL, apretar a baixar. Serà un de tipus IV. Açò només serà necessari la primera vegada que connectem a PostgreSQL.</p>
+<p><iframe src="https://slides.com/aliciasalvador/ad_t4_connexipostgresql/embed" width="576" height="420" title="Copy of AD_T4_ConnexiPostgreSQL" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></p>
+</li>
+</ul>
+<p>De la configuració anterior podem observar la <strong>URL</strong> de connexió que va a
+continuació. És important, perquè després quan connectem des dels nostres
+programes Java, haurem d'especificar-la també. Haurem de substituir
+<em>servidor</em> per l'adreça IP o el nom del servidor, la  <em>base_de_dades</em> per la
+base de dades a la qual ens volem connectar.</p>
+<p><strong>URL de PostgreSQL</strong></p>
+<pre><code>  jdbc:postgresql://_servidor_ :5432/_base_de_dades
+</code></pre>
+<p>que en el nostre exemple ha quedat:</p>
+<pre><code>  jdbc:postgresql://89.36.214.106:5432/geo_ad
+</code></pre>
+<p><strong><u>Connexió a MySQL</u></strong></p>
+<p>Repetim el procés per a MySQL. El servidor està en la mateixa màquina que
+PostgreSQL (89.36.214.106). L'usuari amb que connectarem ara es diu
+<strong>factura</strong>. Haurem d'especificar:</p>
+<ul>
+<li>Les dades de connexió, que seran: <ul>
+<li>Servidor: <strong>89.36.214.106</strong></li>
+<li>Port: <strong>3306</strong></li>
+<li>Usuari:<strong>factura</strong></li>
+<li>Contrasenya: <strong>factura</strong></li>
+<li>Base de dades: <strong>factura</strong></li>
+</ul>
+</li>
+<li>
+<p>Quan demane pel controlador (driver) de MySQL, haurem d'apretar a baixar. Açò només serà necessari la primera vegada que connectem a MySQL</p>
+<p><iframe src="https://slides.com/aliciasalvador/ad_t4_connexiomysql/embed" width="576" height="420" title="Copy of AD_T4_ConnexioMySQL" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></p>
+</li>
+</ul>
+<p><strong>URL de MySQL</strong></p>
+<pre><code>jdbc:mysql://_servidor_ :3306/_base_de_dades
+</code></pre>
+<p>que en el nostre exemple queda:</p>
+<pre><code>jdbc:mysql://89.36.214.106:3306/factura
+</code></pre>
+<p><strong><u>Connexió a SQLite</u></strong></p>
+<p>SQLite és un SGBD molt diferent als anteriors. En tots els anteriors
+s'utilitza l'arquitectura client-servidor. I per tant el servidor de Base de
+Dades no té per què estar en la mateixa màquina.</p>
+<p>Però en moltes ocasions ens pot venir bé un SGBD molt més xicotet i senzill
+que guarde la BD en la mateixa màquina, que siga monousuari i que pese molt
+poc.</p>
+<p>SQLite és un SGBD multiplataforma (podrem fer-lo rodar en qualsevol
+plataforma) que és molt lleuger. Admet la major part de l'estàndar SQL-92. I
+guarda una Base de Dades en un únic fitxer. Una altra característica és que
+des de Java o Kotlin, amb el driver JDBC podrem accedir a les Bases de Dades
+SQLite sense que faça falta cap motor de Base de Dades. Per tant és ideal com
+a Base de Dades que puguem copiar a les nostres aplicacions.</p>
+<p>Quan connectem des de IntelliJ ara no caldrà especificar on està el servidor
+ni quin usuari s'ha de connectar. Haurem de dir el fitxer amb la ruta on està
+(o estarà) la Base de Dades. Per tant només haurem d'especificar:</p>
+<ul>
+<li>Les dades del fitxer: ruta i nom. La ruta ha d'existir. Si el fitxer no existeix, el crearà.</li>
+<li>
+<p>Quan ens diga baixarem el Driver. Això només ens caldrà la primera vegada que connectem amb SQLite</p>
+<p><iframe src="https://slides.com/aliciasalvador/ad_t4_connexiosqlite/embed" width="576" height="420" title="Copy of AD_T4_ConnexioSQLite" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></p>
+</li>
+</ul>
+<p><strong>URL de SQLite</strong></p>
+<pre><code>jdbc:sqlite:ruta_del_fitxer_sqlite
+</code></pre>
+<p>Com hem comentat, SQLite és més senzill que els altres SGBD. Concretament, els
+tipus de dades que utilitza són:</p>
+<ul>
+<li>
+<p><strong>INTEGER</strong>. El valor és un enter amb signe, que ocupa 1, 2, 3, 4, 6, o 8 bytes depenent de la grandària del valor.</p>
+</li>
+<li>
+<p><strong>REAL</strong>. El valor és un número real en coma flotant que ocupa 8 bytes (doble precisió).</p>
+</li>
+<li>
+<p><strong>TEXT</strong>. El valor és una cadena de caràcters que pot estar codificada en UTF-8, UTF-16BE o UTF-16LE, depenent de la codificació de la Base de Dades. No ens preocuparem de la codificació interna.</p>
+</li>
+<li>
+<p><strong>BLOB</strong>. Per a guardar dades binàries que es guardaran exactament com entren, sense mirar el format.</p>
+</li>
+</ul>
+<p>Des de l'entorn d'IntelliJ podrem visualitzar les taules i fins i tot crear-
+les, amb SQL.</p>
+<h2 id="42-dbeaver">4.2 - DBeaver<a class="headerlink" href="#42-dbeaver" title="Permanent link">&para;</a></h2>
+<p>Ja hem vist la utilitat d'inspeccionar les Bases de Dades que ens proporciona
+IntelliJ, i que ens permet accedir a les Bases de Dades per veure l'estructura
+i les dades de les taules, fins i tot, fer i executar sentències SQl. Però no
+és excessivament còmoda.</p>
+<p>Els Sistemes Gestors de Bases de Dades tenen clients específics per a poder
+treballar amb les seues Bases de Dades.</p>
+<p>Però hi ha un altre software, lliure, anomenat <strong>DBeaver</strong> que ens permet
+connectar a quasi totes les Bases de Dades Relacionals, i fins i tot a moltes
+BD NoSQL en la seua versió comercial (Enterprise Edition). Nosaltres
+utilitzarem la que sí que és de codi obert, la Community Edition.</p>
+<p>Ens ho podem baixar des de la seua pàgina de descàrregues,
+<a href="https://dbeaver.io/download">https://dbeaver.io/download</a>. En el moment de fer aquestos apunts van per la
+versió 24.2.2</p>
+<p><img alt="" src="../T4_4_2_1.png" /></p>
+<p>La seua instal·lació no ofereix cap dificultat. En concret, per a Ubuntu, ens
+ofereix un paquet Debian, que senzillament hem d'instal·lar com a superusuari.</p>
+<p>Aquest és el seu aspecte:</p>
+<p><img alt="" src="../T4_4_2_2.png" /></p>
+<p>Anem a crear una connexió a PostgeSQL, una altra a MySQL i una altra a SQLite.</p>
+<p>Quan creem una nova connexió ja podem veure que es pot fer a molts SGBD. En la
+primera pantalla ja tenim els 3 que volem nosaltres, però hi ha molts més</p>
+<p><img alt="" src="../T4_4_2_3.png" /></p>
+<p>Quan li faça falta un Driver (que per cert seran drivers JDBC) ens preguntarà
+de baixar-lo automàticament, per tant serà comodíssim.</p>
+<p><strong><u>PostgreSQL</u></strong></p>
+<p>Aquestes són les dades de connexió que farem:</p>
+<ul>
+<li>Nom de la connexió: el que vulguem, per exemple <strong>geo_ad</strong></li>
+<li>Host: <strong>89.36.214.106</strong></li>
+<li>Port: <strong>5432</strong> (és el port per defecte)</li>
+<li>Database: <strong>geo_ad</strong></li>
+<li>Usuari: <strong>geo_ad</strong></li>
+<li>Contrasenya: <strong>geo_ad</strong></li>
+<li>I en la pestanya <strong>PostgreSQL</strong> cuidem de <strong>no tenir seleccionada l'opció Show all databases</strong> , ja que és inútil mostrar Bases de Dades a les quals no tindrem accés</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><img alt="" src="../T4_4_2_4.png" /></th>
+<th><img alt="" src="../T4_4_2_5.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Una vegada creada la connexió podrem navegar fins les taules, i en seleccionar
+una veurem en 3 pestanyes l'estructura, les dades, i fins i tot un esquema de
+l'estil del Model Entitat-Relació (encara que en realitat representa el Model
+Relacional) on intervé la taula, és a dir, ens mostra les seues claus
+externes.</p>
+<table>
+<thead>
+<tr>
+<th><img alt="" src="../T4_4_2_6.png" /></th>
+<th><img alt="" src="../T4_4_2_7.png" /></th>
+<th><img alt="" src="../T4_4_2_8.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Finalment observem com també podem executar sentències SQL de forma molt
+còmode, i on ens dóna molta ajuda per escriure correctament les paraules
+reservades i també les taules i camps de la nostra BD</p>
+<p><img alt="" src="../T4_4_2_9.png" /></p>
+<p><strong><u>MySQL</u></strong></p>
+<ul>
+<li>Nom de la connexió: el que vulgueu, per exemple <strong>Connexio MySQL factura</strong></li>
+<li>Servidor: <strong>89.36.214.106</strong></li>
+<li>Port: <strong>3306</strong></li>
+<li>Base de dades: <strong>factura</strong></li>
+<li>Usuari: <strong>factura</strong></li>
+<li>Contrasenya: <strong>factura</strong></li>
+</ul>
+<p><img alt="" src="../T4_4_2_10.png" /></p>
+<p>La seua utilització és igual de fàcil que en l'anterior cas.</p>
+<p><img alt="" src="../T4_4_2_11.png" /></p>
+<p><strong><u>SQLite</u></strong></p>
+<p>La connexió a SQLite és més senzilla i per tant ens preguntarà menys coses:</p>
+<ul>
+<li>Nom de la connexió</li>
+<li>Ruta i nom del fitxer</li>
+</ul>
+<p><img alt="" src="../T4_4_2_12.png" /></p>
+<p>L'entorn serà totalment similar als dels casos anteriors. Però en aquesta Base
+de Dades de prova, proveta.sqlite no teníem cap taula:</p>
+<p><img alt="" src="../T4_4_2_13.png" /></p>
+<p>Aprofitem per a crear una taula, per veure que és molt fàcil i còmode. Crearem
+una taula T1 amb 2 camps, c1 numèric, i c2 de text.</p>
+<p>Potser el menys intuïtiu és la manera de crear els camps de la taula. Serà
+apretant amb el botó de la dreta en la zona de les columnes.</p>
+<p><img alt="" src="../T4_4_2_14.png" /></p>
+<p>En les següents imatges es veu com es creen 2 camps. La tercera és en el
+moment de guardar la taula, i podem comprovar que el que fa és generar una
+consulta SQL</p>
+<table>
+<thead>
+<tr>
+<th><img alt="" src="../T4_4_2_15.png" /></th>
+<th><img alt="" src="../T4_4_2_16.png" /></th>
+<th><img alt="" src="../T4_4_2_17.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-sa/2.5/">Llicència Creative Commons Reconeixement CompartirIgual
+2.5</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../3__connexi_a_les_bd_connectors/" class="btn btn-neutral float-left" title="3 - Connexió a les B. Connectors"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../5__iniciaci_a_lapi_jdbc/" class="btn btn-neutral float-right" title="5 - Iniciació a l'API JDBC">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../3__connexi_a_les_bd_connectors/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../5__iniciaci_a_lapi_jdbc/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

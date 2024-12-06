@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/AD_BD_Relacionales/6__jdbc_avanat/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>6 - JDBC avançat - AD - Accés a Dades</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "6 - JDBC avan\u00e7at";
+        var mkdocs_page_input_path = "6__jdbc_avanat.md";
+        var mkdocs_page_url = "/AD_BD_Relacionales/6__jdbc_avanat/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">UD 2. Bases de Dades Relacionals</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1__les_bases_de_dades_relacionals/">1 - Les Bases de Dades Relacionals</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2__el_desfasament_objecterelacional/">2 - El desfasament Objecte-Relacional</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3__connexi_a_les_bd_connectors/">3 - Connexió a les B. Connectors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4__tocar_les_dades/">4 - "Tocar" les dades</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5__iniciaci_a_lapi_jdbc/">5 - Iniciació a l'API JDBC</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">6 - JDBC avançat</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#61-acces-a-les-meta-dades">6.1 - Accés a les Meta Dades</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#62-resultsets-que-poden-avancar-cap-avant-i-cap-arrere">6.2 - ResultSets que poden avançar cap avant i cap arrere</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#63-tractament-derrors-en-aplicacions-jdbc">6.3 - Tractament d'errors en aplicacions JDBC</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#64-transaccions">6.4 - Transaccions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#65-millora-de-rendiment">6.5 - Millora de rendiment</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">AD - Accés a Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">UD 2. Bases de Dades Relacionals</li>
+      <li class="breadcrumb-item active">6 - JDBC avançat</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="6-jdbc-avancat">6 - JDBC avançat<a class="headerlink" href="#6-jdbc-avancat" title="Permanent link">&para;</a></h1>
+<p>JDBC disposa d’una alta funcionalitat i estructures que poden ajudar-nos a
+incrementar la qualitat de les aplicacions que construïm.</p>
+<p>La primera és poder accedir no a les dades, sinó a les estructures de les
+dades, és a dir, l'estructura de les taules o de les consultes que fem: noms
+de les columnes, tipus, etc. En definitiva és accedir a les Metadades.</p>
+<p>També seria convenient construir aplicacions flexibles, robustes i eficients.
+Necessitarem, doncs, un bon tractament d’errors que trasllade quan faça falta
+la informació adequada a l’usuari o reconduint el flux de l’execució cap a
+processos que interpreten i compensen els errors.</p>
+<p>L’eficiència és també una característica important de la qualitat. En general,
+els Sistemes Gestors de Bases de Dades disposen de mecanismes automàtics per
+potenciar l’eficiència de les peticions, com ara l’ús de memòria caché d’accés
+ràpid, la creació d’índexs automàtics, etc. Aquestos automatismes responen a
+determinats patrons a l’hora de fer les peticions. Per això JDBC preveu altres
+formes, diferents a les estudiades fins ara, per realitzar peticions que
+milloren el rendiment.</p>
+<h2 id="61-acces-a-les-meta-dades">6.1 - Accés a les Meta Dades<a class="headerlink" href="#61-acces-a-les-meta-dades" title="Permanent link">&para;</a></h2>
+<p>Normalment quan accedim a una Base de Dades des d'un programa Java, coneixerem
+l'estructura d'aquesta Base de Dades, és a dir, les taules que té i cada taula
+quins camps i de quin tipus són. I fins i tot les claus externes entre les
+taules.</p>
+<p>Però podria passar que no coneguérem aquesta estructura. Això no hauria de ser
+un problema per accedir a la Base de Dades, ja que aquesta és autodescriptiva,
+és a dir, que hem de poder consultar a la Base de Dades per a que ens diga la
+seua estructura.</p>
+<p>L'objecte que ens dóna aquesta informació és el <strong>DatabaseMetaData</strong>. Disposa
+de molts mètodes que ens proporcionen gran quantitat d'informació.</p>
+<p>I també ens dóna informació un altre objecte, <strong>ResultSetMetaData</strong> , que
+obtindrà la informació a partir d'un <strong>ResultSet</strong>. Veurem els dos per
+separat.</p>
+<p><strong><u>DatabaseMetaData</u></strong></p>
+<p>És l'adequat quan volem veure les taules i vistes que tenim en la Base de
+Dades, així com l'estructura de cadascuna d'elles.</p>
+<p>Mirem primer els mètodes més interessants que té:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Valor tornat</strong></th>
+<th><strong>Nom del mètode</strong></th>
+<th><strong>Descripció</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>String</td>
+<td><strong>getDatabaseProductName()</strong></td>
+<td>Torna el nom del SGBD</td>
+</tr>
+<tr>
+<td>String</td>
+<td><strong>getDriverName()</strong></td>
+<td>Torna el driver JDBC utilitzat</td>
+</tr>
+<tr>
+<td>String</td>
+<td><strong>getURL()</strong></td>
+<td>Torna la URL de la connexió</td>
+</tr>
+<tr>
+<td>String</td>
+<td><strong>getUserName()</strong></td>
+<td>Torna el nom de l'usuari que s'ha connectat</td>
+</tr>
+<tr>
+<td>ResultSet</td>
+<td><strong>getTables(cataleg, esquema, nom, tipus)</strong></td>
+<td>Torna informació de totes les taules que coincideixen <br>amb els patrons o criteris. Si posem null a tots els <br>paràmetres ens tornarà totes les taules i vistes</td>
+</tr>
+<tr>
+<td>ResultSet</td>
+<td><strong>getColumns(cataleg, esquema, nom, nom_colu)</strong></td>
+<td>Torna informació de les columnes de la taula <br>especificada en el tercer paràmetre (que està en el <br>catàleg i en l'esquema, si els posem). El quart<br> paràmetre servirà per a seleccionar les columnes <br>que coincidesquen amb el patró (null per a totes)</td>
+</tr>
+<tr>
+<td>ResultSet</td>
+<td><strong>getPrimaryKeys(cataleg, esquema, taula)</strong></td>
+<td>Torna la llista de camps que formen la clau principal</td>
+</tr>
+<tr>
+<td>ResultSet</td>
+<td><strong>getImportedKeys(cataleg, esquema, taula)</strong></td>
+<td>Torna una llista amb les claus externes definides en <br>aquesta taula</td>
+</tr>
+<tr>
+<td>ResultSet</td>
+<td><strong>getExportedKeys(cataleg, esquema, taula)</strong></td>
+<td>Torna una llista amb les claus externes que apunten a<br> aquesta taula</td>
+</tr>
+</tbody>
+</table>
+<p>Per poder comprovar tot l'anterior, farem un programa que ens done informació
+de la Base de Dades, una relació de les taules i vistes que té.</p>
+<p>Posteriorment acceptarà un número, i traurà la informació de la taula
+corresponent amb aquest format: columnes, tipus, clau principal, claus
+externes.</p>
+<p>Copieu elsegüent codi en un fitxer Kotlin anomenat
+<strong>Exemple_4_31_MetaData.kt</strong> :</p>
+<pre><code>package exemples
+
+import java.sql.DriverManager
+import java.io.BufferedReader
+import java.io.InputStreamReader
+
+fun main(args: Array&lt;String&gt;) {
+    val con = DriverManager.getConnection ("jdbc:postgresql://89.36.214.106:5432/geo_ad", "geo_ad", "geo_ad")
+
+    val dbmd = con.getMetaData ()
+    println("Informació general")
+    println("------------------")
+    println("SGBD " + dbmd.getDatabaseProductName())
+    println("Driver " + dbmd.getDriverName())
+    println("URL " + dbmd.getURL())
+    println("Usuari " + dbmd.getUserName())
+    println()
+    println("Llistat de taules")
+    println(String.format("%-6s %-7s %-7s %-10s %-10s", "Número", "Catàleg", "Esquema", "Nom", "Tipus"))
+    println("---------------------------------------------")
+    val ll = dbmd.getTables(null, "public", null, null)
+    var compt = 1
+    val taules = ArrayList&lt;String&gt;()
+    while (ll.next()) {
+        println(String.format("%-6d %-7s %-7s %-10s %-10s",(compt++),ll.getString(1),ll.getString(2),ll.getString(3),ll.getString(4)))
+        taules.add(ll.getString(3))
+    }
+    println()
+    println("Introdueix un número per veure l'estructura de la taula (0 per acabar) ")
+    val ent = BufferedReader(InputStreamReader (System.`in`))
+    var opcio = Integer.parseInt(ent.readLine())
+
+    while (opcio != 0) {
+        if (opcio &lt; compt &amp;&amp; opcio &gt; 0) {
+            val taula = dbmd.getTables (null, "public", taules.get(opcio-1), null)
+            if (taula.next()) {
+                if (taula.getString(4).equals("TABLE")) {
+                    val rs = dbmd.getColumns (null, "public", taules.get(opcio-1), null)
+                    println("Estructura de la taula " + taules.get(opcio - 1))
+                    println("----------------------------")
+                    while (rs.next())
+                        println(rs.getString(4) + " (" + rs.getString(6) + ")")
+                    println("----------------------------")
+
+                    val rs2 = dbmd.getPrimaryKeys(null, "public", taules.get(opcio - 1))
+                    print("Clau principal ")
+                    while (rs2.next())
+                        print(rs2.getString(4) + " ")
+                    println()
+
+                    val rs3 = dbmd.getImportedKeys(null, "public", taules.get(opcio - 1))
+                    println("Claus externes ")
+                    while (rs3.next()) {
+                        println(rs3.getString(8) + " apunta a " + rs3.getString(3))
+                    }
+                    rs.close()
+                    rs2.close()
+                    rs3.close()
+                }
+            }
+            taula.close()
+
+        }
+        println()
+        println("Introdueix un número per veure l'estructura de la taula (0 per acabar) ")
+        opcio = Integer.parseInt(ent.readLine())
+    }
+    ll.close()
+    con.close()
+}
+</code></pre>
+<p><strong><u>ResultSetMetaData</u></strong></p>
+<p>Una vegada executada una sentència SELECT de SQL que ja tenim el resultat en
+un ResultSet, podem accedir també a meta dades d'aquest ResultSet, obtenint
+per exemple el número de columnes, o el tipus de les columnes. Ho obtenim per
+mig del <strong>ResulSetMetaData</strong>.</p>
+<p>Només veurem 3 mètodes</p>
+<table>
+<thead>
+<tr>
+<th>Valor tornat</th>
+<th>Nom del mètode</th>
+<th>Descripció</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td><strong>getColumnCount()</strong></td>
+<td>Torna el número de columnes del ResultSet</td>
+</tr>
+<tr>
+<td>String</td>
+<td><strong>getColumnName(index)</strong></td>
+<td>Torna el nom de la columna (la primera columna és la 1)</td>
+</tr>
+<tr>
+<td>String</td>
+<td><strong>getColumnTypeName(index)</strong></td>
+<td>Torna el tipus de la columna</td>
+</tr>
+</tbody>
+</table>
+<p>El següent exemple és una modificació del programa anterior, on ara traurem
+tot el contingut d'una taula per mig de la sentència <strong>SELECT * FROM
+<em>taula</em></strong>. Intentarem donar-li un aspecte tabular, però sense patir molt per
+l'aspecte.</p>
+<p>Copieu el següent codi en un fitxer Kotlin anomenat
+<strong>Exemple_4_32_ResultSetMetaData.kt</strong> :</p>
+<pre><code>package exemples
+
+import java.sql.DriverManager
+import java.io.BufferedReader
+import java.io.InputStreamReader
+
+fun main(args: Array&lt;String&gt;) {
+    val con = DriverManager.getConnection("jdbc:postgresql://89.36.214.106:5432/geo_ad", "geo_ad", "geo_ad")
+
+    val dbmd = con.getMetaData()
+    println("Llistat de taules:")
+    println(String.format("%-6s %-7s %-7s %-10s %-10s", "Número", "Catàleg", "Esquema", "Nom", "Tipus"))
+    println("---------------------------------------------")
+    val ll = dbmd.getTables(null, "public", null, null)
+    var compt = 1
+    val taules = ArrayList&lt;String&gt;()
+    while (ll.next()) {
+        println(String.format("%-6d %-7s %-7s %-10s %-10s",(compt++),ll.getString(1),ll.getString(2),
+            ll.getString(3),ll.getString(4)))
+        taules.add(ll.getString(3))
+    }
+    println()
+    println("Introdueix un número per veure el contingut de la taula (0 per acabar): ")
+    val ent = BufferedReader(InputStreamReader(System.`in`))
+    var opcio = Integer.parseInt(ent.readLine())
+
+    while (opcio != 0) {
+        if (opcio &lt; compt &amp;&amp; opcio &gt; 0) {
+            val taula = dbmd.getTables(null, "public", taules.get(opcio - 1), null)
+            if (taula.next()) {
+                if (taula.getString(4).equals("TABLE")) {
+                    val rs = con.createStatement().executeQuery("SELECT * FROM " + taules.get(opcio - 1) + " ORDER BY 1")
+                    println("Contingut de la taula " + taules.get(opcio - 1))
+                    println("----------------------------")
+
+                    val rsmd = rs.getMetaData()
+                    for (i in 1..rsmd.getColumnCount())
+                        print(String.format("%-20.20s", rsmd.getColumnName(i)))
+                    println()
+                    println("------------------------------------------")
+
+                    while (rs.next()) {
+                        for (i in 1..rsmd.getColumnCount())
+                            print(String.format("%-20.20s ", rs.getString(i)))
+                        println()
+                    }
+                    rs.close()
+                }
+            }
+            taula.close()
+        }
+        println()
+        println("Introdueix un número per veure el contingut de la taula (0 per acabar): ")
+        opcio = Integer.parseInt(ent.readLine())
+    }
+    ll.close()
+    con.close()
+}
+</code></pre>
+<h2 id="62-resultsets-que-poden-avancar-cap-avant-i-cap-arrere">6.2 - ResultSets que poden avançar cap avant i cap arrere<a class="headerlink" href="#62-resultsets-que-poden-avancar-cap-avant-i-cap-arrere" title="Permanent link">&para;</a></h2>
+<p>Fins el moment, tots els <strong>ResultSet</strong> que hem creat podien avançar únicament
+cap avant, fent un recorregut seqüencial de les dades.</p>
+<ul>
+<li>Inicialment el punter que apunta a l'estructura està situat abans de la primera fila</li>
+<li>En fer <strong>next()</strong> se situa a la següent fila (la primera vegada se situa en la primera fila)</li>
+<li>Quan estiguem situats en l'última fima, si fem next() se situara després de l'última, i ho indicarà tornant <strong>false</strong></li>
+</ul>
+<p>Però aquesta manera de funcionar, que es diu <strong>TYPE_FORWARD_ONLY</strong> i que és
+l'opció per defecte per a obrir un ResultSet, no és l'única. Aquestos són els
+tipus de ResultSet que hi ha:</p>
+<ul>
+<li><strong>TYPE_FORWARD_ONLY</strong> : és el tipus utilitzat fins el moment, i és el tipus per defecte. El ResultSet només pot avançar cap avant.</li>
+<li><strong>TYPE_SCROLL_INSENSITIVE</strong> : El ResultSet pot avançar cap avant i cap arrere, fins i tot pot anar a una posició absoluta (directament, sense passar per les anteriors). El ResultSet no és sensible als canvis fets en les dades que han proporcionat aquest resultat, és a dir, ens mostra les dades que hi havia en el moment d'executar la consulta, sense poder mostrar possibles canvis posteriors.</li>
+<li><strong>TYPE_SCROLL_SENSITIVE</strong> : Igual que l'anterior en quant al moviment. Però ara sí que és capaç de mostrar possibles canvies fets en les dades originals posteriors al moment de l'execució de la consulta, mentre el ResultSet estiga obert.</li>
+</ul>
+<p>I per una altra banda el <strong>ResultSet</strong> pot tenir la possibilitat
+d'<strong>actualitzar</strong> les dades originals. Des d'aquest punt de vista hi ha 2
+possibles tipus:</p>
+<ul>
+<li><strong>CONCUR_READ_ONLY</strong> : El ResultSet només és de lectura i no es pot actualitzar</li>
+<li><strong>CONCUR_UPDATABLE</strong> : El ResultSet es pot actualitzar (i els canvis es reflectiran en les dades originals) utilitzant el mateix ResultSet</li>
+</ul>
+<p>L'opció per defecte és <strong>CONCUR_READ_ONLY</strong></p>
+<p>Realment on declararem els tipus és en la creació del <strong>STATEMENT</strong> a partir
+del qual crearem la sentència que omplirà el <strong>ResultSet</strong>. És lògic, ja que
+aquestes maneres de funcionar s'han de preparar abans d'executar la sentència.
+Fins ara no havíem posat paràmetres en la creació del <strong>Statement</strong> , cosa que
+fa que es cree amb les opcions per defecte. Si volem altres opcions:</p>
+<pre><code>val st =con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY)
+</code></pre>
+<pre><code>val st =con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE)
+</code></pre>
+<p>La primera qüestió que hem de comentar és que el SGBD ha de ser capaç de
+suportar els tipus que no són per defecte, i no sempre és així. Mentre que
+<strong>PostgreSQL</strong> , <strong>Oracle</strong> i <strong>MySQL</strong> sí que són capaços de suportar tots
+els tipus anteriors, <strong>SQLite</strong> no ho pot fer i tan sols suporta
+<strong>TYPE_FORWARD_ONLY</strong> i <strong>CONCUR_READ_ONLY</strong> , com era d'esperar.</p>
+<p>Deixant de banda la possibilitat de reflectir els possibles canvis de les
+dades originals (<strong>SENSITIVE</strong>), i de poder actualitzar-les
+(<strong>CONCUR_UPDATABLE</strong>), anem a estudiar els possibles moviments dins del
+<strong>ResultSet</strong>.</p>
+<ul>
+<li><strong>next</strong> : Avança una fila cap avant. Torna <em>true</em> si s'ha pogut posicionar, i <em>false</em> si no s'ha pogut posicionar, per estar després de l'última fila.</li>
+<li><strong>previous</strong> : Avança una fila cap arrere. Torna <em>true</em> si s'ha pogut posicionar, i <em>false</em> si no s'ha pogut posicionar, per estar abans de la primera fila.</li>
+<li><strong>first</strong> : Se situa en la primera fila. Torna <em>true</em> si s'ha pogut posicionar, i <em>false</em> si no s'ha pogut posicionar, per no contenir el ResultSet cap fila.</li>
+<li><strong>last:</strong> : Se situa en l'última fila. Torna <em>true</em> si s'ha pogut posicionar, i <em>false</em> si no s'ha pogut posicionar, per no contenir el ResultSet cap fila.</li>
+<li><strong>beforeFirst</strong> : Se situa al principi del RecordSet, abans de la primera fila. Si no hi havia cap fila, no fa res.</li>
+<li><strong>afterLast</strong> : Se situa al final del RecordSet, després de l'última fila. Si no hi havia cap fila, no fa res.</li>
+<li><strong>relative(int <em>files</em>)</strong>: Meneja el cursor respecte de la posició actual, tantes files com s'indica en el paràmetre (si el paràmetre és negatiu, anirà cap arrere).</li>
+<li><strong>absolute(int <em>fila</em>)</strong>: Situa el cursor en la fila especificada en el paràmetre (1 és la primera)</li>
+</ul>
+<p>El següent exemple es practica anar a la primera, a l'anterior, a la següent i
+a l'última fila.</p>
+<p>Copieu el següent codi en un fitxer Kotlin anomenat <strong>Exemple_4_41_Scroll.kt</strong>
+:</p>
+<pre><code>package exemples
+
+import javax.swing.JFrame
+import javax.swing.JLabel
+import javax.swing.JTextField
+import javax.swing.JButton
+import javax.swing.JPanel
+import java.awt.FlowLayout
+import java.awt.GridLayout
+import java.awt.BorderLayout
+import java.awt.EventQueue
+import java.sql.DriverManager
+import java.sql.ResultSet
+
+class Exemple_4_41_Scroll : JFrame() {
+
+    val nomComarca = JTextField()
+    val nomProvincia = JTextField()
+
+    val primer = JButton("&lt;&lt;")
+    val anterior = JButton("&lt;")
+    val seguent = JButton("&gt;")
+    val ultim = JButton("&gt;&gt;")
+    val tancar = JButton("Tancar")
+
+
+    val pDalt = JPanel(FlowLayout())
+    val pCentre = JPanel(GridLayout(8, 0))
+    val pDades = JPanel(GridLayout(2, 2))
+    val pBotonsMov = JPanel(FlowLayout())
+    val pTancar = JPanel(FlowLayout())
+
+    val con = DriverManager.getConnection("jdbc:postgresql://89.36.214.106:5432/geo_ad", "geo_ad", "geo_ad")
+    val st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+    val rs = st.executeQuery("SELECT * FROM COMARCA ORDER BY 1")
+
+    init {
+        defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+
+        setBounds(100, 100, 350, 400)
+        setLayout(BorderLayout())
+
+        getContentPane().add(pCentre, BorderLayout.CENTER)
+        getContentPane().add(JPanel(FlowLayout()), BorderLayout.WEST)
+        getContentPane().add(JPanel(FlowLayout()), BorderLayout.EAST)
+        getContentPane().add(pTancar, BorderLayout.SOUTH)
+
+        pDalt.add(JLabel("Manteniment de COMARQUES"))
+        pCentre.add(pDalt)
+
+        pDades.add(JLabel("Nom comarca"))
+        pDades.add(nomComarca)
+        pDades.add(JLabel("Nom província"))
+        pDades.add(nomProvincia)
+        pCentre.add(pDades)
+
+        nomComarca.setEditable(false)
+        nomProvincia.setEditable(false)
+
+        pCentre.add(JPanel(FlowLayout()))
+
+        pBotonsMov.add(primer)
+        pBotonsMov.add(anterior)
+        pBotonsMov.add(seguent)
+        pBotonsMov.add(ultim)
+        pCentre.add(pBotonsMov)
+
+        pTancar.add(tancar)
+
+        rs.first()
+        visComarca()
+
+        primer.addActionListener {
+            rs.first()
+            visComarca()
+        }
+
+        anterior.addActionListener {
+            if (!rs.isFirst())
+                rs.previous()
+            visComarca()
+        }
+
+        seguent.addActionListener {
+            if (!rs.isLast())
+                rs.next()
+            visComarca()
+        }
+
+        ultim.addActionListener {
+            rs.last()
+            visComarca()
+        }
+
+        tancar.addActionListener{
+            rs.close()
+            st.close()
+            con.close()
+            System.exit(0)
+        }
+    }
+
+    fun visComarca() {
+        nomComarca.setText(rs.getString(1))
+        nomProvincia.setText(rs.getString(2))
+    }
+}
+
+fun main(args: Array&lt;String&gt;) {
+    EventQueue.invokeLater({ Exemple_4_41_Scroll().isVisible = true })
+}
+</code></pre>
+<p>Aquest és el resultat:</p>
+<p><img alt="" src="../T4_6_2_1.png" /></p>
+<h2 id="63-tractament-derrors-en-aplicacions-jdbc">6.3 - Tractament d'errors en aplicacions JDBC<a class="headerlink" href="#63-tractament-derrors-en-aplicacions-jdbc" title="Permanent link">&para;</a></h2>
+<p>L’execució de sentències SQL està sotmesa a molts de factors que poden
+provocar algun error. Pot passar que la connexió falle, que el controlador no
+siga l’adequat, que les sentències tinguen errades, que el SGBD no suporte la
+sentència, i un llarg etcètera de possibilitats.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Podeu trobar informació referida als codis de <b>SQLSTATE</b> en la wikipedia, en
+aquest <a href ="https://en.wikipedia.org/wiki/SQLSTATE"> enllaç</a>. El codi SQLSTATE està
+format per cinc caràcters. Els dos primers indiquen la tipologia de l’error i
+els tres últims el concreten.</p>
+</div>
+<p>Els errors SQL es troben molt ben definits a l’especificació estàndard, la
+qual descriu el valor de la variable anomenada <strong>SQLSTATE</strong> , que identifica
+l’estat d’una sentència SQL immediatament després de la seua execució. Quan
+JDBC detecta que després d’una execució el valor d’aquesta variable es
+correspon a un error, dispara una excepció de tipus <strong>SQLException</strong> la qual,
+a més de contenir un missatge clarificador, incorpora el valor del
+<strong>SQLSATE</strong>. Podem recuperar aquest valor amb el mètode <strong>getSQLState()</strong>.</p>
+<p>L’ús de <strong><em>try-catch</em></strong> ens permetrà capturar específicament excepcions
+<strong>SQLException</strong> o derivades. Una vegada capturades, utilitzarem el codi
+SQLSTATE per decidir com cal actuar.</p>
+<p>Un altre mètode molt útil és <strong>getMessage()</strong> que torna una cadena amb l'error
+produït. Pot servir perfectament per a la resta d'errors no tractats, ja que
+amb aquest missatge sempre donarem una pista, encara que no personalitzada com
+abans.</p>
+<p>Imaginem, per exemple, que en intentar connectar amb un SGBD capturem una
+excepció SQL amb el valor <strong>SQLState</strong> igual a <em>28000</em>. Si consulteu aquest
+codi a la pàgina que us indiquem en la nota de dalt veureu que el valor
+<em>28000</em> correspon a un error en l’autenticació. En canvi, si el codi rebut
+haguera estat <em>08001</em> significaria que JDBC està trobant problemes de xarxa a
+l’hora de connectar, ja siguen deguts a una desconnexió física, o simplement a
+un <em>host</em> o adreça IP desconegut.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>PostgreSQL defineix millor l'error d'autenticació. En el cas de PostgreSQL és
+el 28P01. Per tant hauríem de substituir per aquest valor en el programa
+posterior si volem connectar a ell. La taula d'errors de PostgreSQL la podeu
+trobar en aquest <a href ="https://www.postgresql.org/docs/current/static/errcodes-
+appendix.html"> enllaç</a> </p>
+</div>
+<p>No cal informar detalladament l’usuari de tots i cadascun dels possibles
+errors, però sí que cal decidir quins errors requeriran un tractament
+específic i quins no. Segurament no seria mala idea, si detectem un
+<strong>SQLState</strong> de valor <em>08001</em> , aconsellar l’usuari que abans de trucar al
+servei tècnic revise les connexions de xarxa o s’assegure que el SGBD es troba
+en marxa.</p>
+<p>D’altra banda, la detecció precisa del <strong>SQLState</strong> ens pot també permetre
+realitzar accions per reconduir l’error. Imaginem, per exemple, que per raons
+de seguretat l’administrador del SGBD va canviant de contrasenya.
+L’administrador tria una contrasenya a l’atzar d’entre un conjunt de tres o
+quatre prefixades. Per tal de no haver d’estar contínuament configurant la
+nostra aplicació cada vegada que canvie la contrasenya, podem implementar una
+utilitat que accepte un conjunt de tres o quatre contrasenyes de manera que
+puga anar provant d’una en una quan reba un error d’autenticació.</p>
+<p>Per a la resta d'errors, podem avisar a l'usuari de l'error que s'ha produït,
+o podem utilitzar una altra tècnica, que és utilitzar enregistradors. Els
+enregistradors (<em>loggers</em>) van guardant automàticament en un fitxer les coses
+que van succeint.</p>
+<p>Vegem un possible exemple on posem en pràctica totes les consideracions que
+acabem de comentar. Està fet sobre <strong>MySQL</strong> , ja que com hem comentat abans,
+PostgreSQL utilitza ara un altre codi d'error per a la contrasenya invàlida.
+Tindrem 3 contrasenyes possibles per a la connexió. Si qualsevol de les 3 és
+bona, es connectarà. Sinó indicarà que hi ha un error en la contrasenya.</p>
+<p>Copieu el següent codi en un fitxer Kotlin anomenat
+<strong>Exemple_4_51_TractamentErrors.kt</strong> :</p>
+<pre><code>package exemples
+
+import java.sql.Connection
+import java.sql.DriverManager
+import java.sql.SQLException
+
+fun main(args: Array&lt;String&gt;) {
+
+    var connectat = false
+    var con: Connection? = null
+    println("tractamentErrorConnexio()")
+
+    try {
+
+        val url = "jdbc:postgresql://89.36.214.106:5432/geo_ad"
+
+        val usuari = "geo_ad"
+        val contrasenyes = arrayOf("geo0", "geo1", "geo_ad")
+
+        for (i in 0 until contrasenyes.size) {
+            try {
+                con = DriverManager.getConnection(url, usuari, contrasenyes[i])
+                connectat = true
+                break
+            } catch (ex: SQLException) {
+                if (!ex.getSQLState().equals("28P01")) {
+                    // NO és un error d'autenticació
+                    throw ex
+                }
+            }
+        }
+        if (connectat)
+            println("Connexió efectuada correctament")
+        else
+            println("Error en la contrasenya")
+    } catch (ex: SQLException) {
+        if (ex.getSQLState().equals("08001")) {
+            println(
+                "S'ha detectat un problema de connexió. Reviseu els cables de xarxa i assegureu-vos que el SGBD està operatiu."
+                        + " Si continua sense connectar, aviseu el servei tècnic"
+            )
+
+        } else {
+            println(
+                "S'ha produït un error inesperat. Truqueu al servei tècnic indicant el següent codi d'error SQL:"
+                        + ex.getSQLState()
+            )
+        }
+    } catch (ex: ClassNotFoundException) {
+        println("No s'ha trobat el controlador JDBC (" + ex.message + "). Truqueu al servei tècnic")
+    } finally {
+        try {
+            if (con != null &amp;&amp; !con.isClosed()) {
+                con.close()
+            }
+        } catch (ex: SQLException) {
+            throw ex
+        }
+    }
+}
+</code></pre>
+<h2 id="64-transaccions">6.4 - Transaccions<a class="headerlink" href="#64-transaccions" title="Permanent link">&para;</a></h2>
+<p>Una transacció és un conjunt de sentències SQL d'actualització (INSERT,
+DELETE, UPDATE) que o bé s'executen totes o bé no s'executa ninguna.</p>
+<p>La manera de confirmar les sentències és amb <strong>COMMIT</strong> , i la manera de
+rebutjar-les totes és <strong>ROLLBACK</strong> (quedant l'estat com estava abans de
+començar la transacció). En qualsevol dels dos casos, després d'executar les
+sentències de control <strong>COMMIT</strong> o <strong>ROLLBACK</strong> , començarà una transacció
+nova.</p>
+<p>JDBC trasllada també aquest metodologia al seu API. Per defecte, les
+connexions JDBC consideren que cada objecte <strong>Statement</strong> és en si mateix una
+transacció. Abans de cada execució es demana l’inici d’una transacció i al
+final, si l’execució té èxit, s’envia un <strong>commit</strong> i si no té èxit, un
+<strong>rollback</strong>. Per això diem que la connexió actua en mode <strong>autocommit</strong>.</p>
+<p>Però hi ha una altra manera de funcionar. Els <strong>Statements</strong> poden treballar
+sense automatitzar el <strong>commit</strong> després de cada execució, canviant la
+connexió de mode amb el mètode <strong>setAutoCommit(false)</strong>.</p>
+<p>A partir d’aleshores es consideraran instruccions d’una mateixa transacció
+totes les sentències executades entre dues cridades als mètodes <strong>commit</strong> o
+<strong>rollback</strong>(equivalents JDBC de les instruccions <strong>COMMIT</strong> i <strong>ROLLBACK</strong> de
+SQL).</p>
+<p>A continuació tenim un programa en el qual fem una sèrie de canvis (una
+modificació de files i un esborrat) però després fem un rollback, i per tant
+no s'haurà fet cap de les actualitzacions. És sobre la Base de Dades de SQLite
+<strong>Empleats,sqlite</strong> , que només tenia la taula EMPLEAT. Per a mostrar que
+estem fent els canvis, però que després ls desfem amb <strong>rollback</strong> , mostrem
+un resum en el qual senzillament indiquem el número d'empleat i el total dels
+sous.</p>
+<p>Prèviament ens guardem el estat que tenia l'<strong>autocommit</strong> , i després el
+desactivem. Quan finalitza tot el procés posem autocommit com estava en un
+principi.</p>
+<p>Copieu el següent codi en un fitxer Kotlin anomenat
+<strong>Exemple_4_61_Transaccions.kt</strong> :</p>
+<pre><code>package exemples
+
+import java.sql.DriverManager
+import java.sql.Connection
+
+fun main(args: Array&lt;String&gt;) {
+    val con = DriverManager.getConnection("jdbc:sqlite:Empleats.sqlite")
+
+    resumEmpleats(con)          // estat inicial
+
+    val autocommit = con.getAutoCommit()
+    con.setAutoCommit(false)
+    val st = con.createStatement()
+    st.executeUpdate("UPDATE EMPLEAT SET sou = sou * 1.05")
+    st.executeUpdate("DELETE FROM EMPLEAT WHERE depart=10")
+
+    resumEmpleats(con)          // s'han modificat els sous i s'han esborrat dos empleats
+
+    con.rollback()              // desfem els canvis
+
+    resumEmpleats(con)          // hem tornat a l'estat inicial:
+    // no s'ha fet ni l'actualització de sous ni l'esborrat d'empleats
+
+    con.setAutoCommit(autocommit)
+
+    con.close()
+}
+
+fun resumEmpleats(c: Connection) {  // En el resum traurem el número d'empleats i el total de sous
+    val st = c.createStatement()
+    val rs = st.executeQuery("SELECT COUNT(*), SUM(sou) FROM EMPLEAT")
+    rs.next()
+    println("Actualment hi ha " + rs.getInt(1) + " empleats que cobren un total de " + rs.getDouble(2) + " €")
+    rs.close()
+    st.close()
+}
+</code></pre>
+<p>La major part de SGBD permeten utilitzar transaccions explícites amb qualsevol
+instrucció SQL, fins i tot alguns SGBD també en sentències DDL (<em>data
+definition language</em>) com CREATE TABLE, etc . Les sentències de definició
+modifiquen directament l’estructura de les dades i, per tant, cal anar molt en
+compte perquè poden provocar danys importants, pèrdues de dades existents,
+etc.</p>
+<p>Però hi ha alguns SGBD com Oracle que no suporten la revocació de sentències
+DDL i en cas d’executar <strong>rollback</strong> , obtindrem un error indicant que les
+sentències DDL no es poden revocar.</p>
+<h2 id="65-millora-de-rendiment">6.5 - Millora de rendiment<a class="headerlink" href="#65-millora-de-rendiment" title="Permanent link">&para;</a></h2>
+<p>Un altre aspecte important que mesura la qualitat de les aplicacions és
+l’eficiència amb la qual s’aconsegueix comunicar amb el SGBD. Per optimitzar
+la connexió és important reconèixer quins processos poden actuar de coll
+d’ampolla.</p>
+<p>En primer lloc, analitzarem la petició de connexió a un SGBD perquè es tracta
+d’un procés costós però inevitable que cal considerar.</p>
+<p>En segon lloc, estudiarem les sentències predefinides, perquè el seu ús
+facilita la creació de <em>dades clau</em> i índexs temporals de manera que siga
+possible anticipar-se a la demanda o disposar de les dades de forma molt més
+ràpida.</p>
+<p><strong><u>Temps de vida d'una connexió</u></strong></p>
+<p>L’establiment d’una connexió és un procediment molt lent, tant a la part
+client com a la part servidor.</p>
+<ul>
+<li>A la part client, <strong>DriverManager</strong> ha de descobrir el controlador correcte d’entre tots els que haja de gestionar. La majoria de vegades les aplicacions treballaran només amb un únic controlador, però cal tenir en compte que <strong>DriverManager</strong> no coneix a priori quina URL de connexió correspon a cada controlador, i per saber-ho envia una petició de connexió a cada controlador que tinga registrat, el controlador que no li retorna error serà el correcte.</li>
+<li>A la banda servidor, es crearà un context específic i s’habilitaran un conjunt de recursos per cada client connectat. És a dir, que durant la petició de connexió el SGDB ha de gastar un temps considerable abans de deixar operativa la comunicació client-servidor.</li>
+</ul>
+<p>Aquesta elevat cost de temps concentrat en el moment de la petició de connexió
+fa que ens plantegem si val la pena obrir i tancar la connexió cada vegada que
+ens toque executar una sentència SQL, o obrir una connexió al principi de
+l'aplicació que tancaríem en finalitzar. Lamentablement no hi ha una única
+resposta, sinó que depèn de la freqüència d’ús de la connexió i el número de
+connexions contra el mateix SGBD.</p>
+<p>Com en tot, es tracta de trobar el punt d’equilibri. Si el número de clients,
+i per tant de connexions, és baix i la freqüència d’ús és alta, serà
+preferible mantenir les connexions obertes molt de temps. Per contra, si el
+número de connexions és molt alt i la freqüència d'ús baixa, el que serà
+preferible serà obrir i tancar la connexió cada vegada que es necessite. I
+també hi haurà una multitud de casos en què la solució consistirà a mantenir
+les connexions obertes però no permanentment. Es pot donar un temps de vida a
+cada connexió, o bé tancar-les després de restar inactiva una quantitat
+determinada de temps, o es pot fer servir el criteri de mantenir un número
+màxim de connexions obertes, tancant les més antigues o les més inactives quan
+se sobrepasse el límit.</p>
+<p><strong><u>Sentències predefinides</u></strong></p>
+<p>JDBC disposa d’un objecte derivat del <strong>Statement</strong> que s’anomena
+<strong>PreparedStatement</strong>., a la qual se li passa la sentència SQL en el moment de
+crear-lo, no en el moment d'executar la sentència (com passava amb
+<strong>Statement</strong>). I a més aquesta sentència pot admetre paràmetres, cosa que ens
+pot anar molt bé en determinades ocasions.</p>
+<p>Siga com siga, <strong>PreparedStatement</strong> presenta avantatges sobre el seu
+antecessor <strong>Statement</strong> quan ens toque treballar amb sentències que s'hagen
+d'executar diverses vegades. La raó és que qualsevol sentència SQL, quan
+s’envia al SGBD serà compilada abans de ser executada.</p>
+<ul>
+<li>Utilitzant un objecte <strong>Statement</strong> , cada vegada que fem una execució d’una sentència, ja siga via <strong>executeUpdate</strong> o bé via <strong>executeQuery</strong> , el SGBD la compilarà, ja que li arribarà en forma de cadena de caràcters.</li>
+<li>En canvi, al <strong>PreparedStament</strong> la sentència mai varia i per tant es pot compilar i guardar dins del mateix objecte, de manera que les següents vegades que s’execute no caldrà compilar-la. Això reduirà sensiblement el temps d’execució.</li>
+</ul>
+<p>En alguns sistemes gestors, a més, fer servir <strong>PreparedStatements</strong> pot
+arribar a suposar més avantatges, ja que utilitzen la seqüència de bytes de la
+sentència per detectar si es tracta d’una sentència nova o ja s’ha servit amb
+anterioritat. D’aquesta manera es propicia que el sistema guarde les respostes
+en la memòria caché, de manera que es puguen lliurar de forma més ràpida.</p>
+<p>En el moment de programar, la principal diferència dels objectes
+<strong>PreparedStatement</strong> en relació als <strong>Statement</strong> , és que en els últims la
+sentència es passa com a paràmetre en el moment d'executar-lo, mentre que en
+els primers se'ls passa la sentència SQL predefinida en el moment de crear-lo
+(no d'executar-lo). Com que la sentència queda predefinida, ni els mètodes
+<strong>executeUpdate</strong> ni <strong>executeQuery</strong> requeriran cap paràmetre. És a dir,
+justet al revès que en el <strong>Statement</strong>.</p>
+<p>Posem un exemple, en el qual demanem per teclat el nom d'una comarca i una
+altura, per a traure els pobles de la comarca introduïda que estan a una
+altura superior a l'altura introduïda.</p>
+<p>Copieu el següent codi en un fitxer Kotlin anomenat
+<strong>Exemple_4_71_Statement.kt</strong> :</p>
+<pre><code>package exemples
+
+import java.sql.DriverManager
+import java.util.Scanner
+
+fun main(args: Array&lt;String&gt;) {
+    val con = DriverManager.getConnection("jdbc:postgresql://89.36.214.106:5432/geo_ad", "geo_ad", "geo_ad")
+
+    println("Introdueix una comarca:")
+    val com = Scanner(System.`in`).nextLine()
+    println("Introdueix una altura:")
+    val alt = Scanner(System.`in`).nextInt()
+
+    val st = con.createStatement()    // La sentència no va en el moment de la creació sinó en el d'execució
+    val rs = st.executeQuery("SELECT nom,altura FROM POBLACIO WHERE nom_c='" + com + "' AND altura&gt;" + alt)
+    while (rs.next()) {
+        println(rs.getString(1) + " (" +rs.getInt(2) + " m.)")
+    }
+    st.close()
+    con.close()
+}
+</code></pre>
+<p>Observeu com per al cas del nom de la comarca, que és un String (o millor dit
+un Varchar), en la sentència SQL hem de posar una cometa simple (') abans i
+després del valor de la comarca, ja que és així com s'expressen els Varchar.
+Resulta un poc incòmode.</p>
+<p>Si utilitzem <strong>PreparedStatement</strong> , només haurem de canviar les línies 14 i
+15.</p>
+<p>Copieu el següent codi en un fitxer Kotlin anomenat
+<strong>Exemple_4_72_PreparedStatement.kt</strong> , i observeu com només han canviat les
+línies 14 i 15:</p>
+<pre><code>package exemples
+
+import java.sql.DriverManager
+import java.util.Scanner
+
+fun main(args: Array&lt;String&gt;) {
+    val con = DriverManager.getConnection("jdbc:postgresql://89.36.214.106:5432/geo_ad", "geo_ad", "geo_ad")
+
+    println("Introdueix una comarca:")
+    val com = Scanner(System.`in`).nextLine()
+    println("Introdueix una altura:")
+    val alt = Scanner(System.`in`).nextInt()
+
+    val st = con.prepareStatement("SELECT nom,altura FROM POBLACIO WHERE nom_c='" + com + "' AND altura&gt;" + alt)
+    val rs = st.executeQuery()     // La sentència no va en el moment de l'execució sinó en el de creació
+    while (rs.next()) {
+        println(rs.getString(1) + " (" +rs.getInt(2) + " m.)")
+    }
+    st.close()
+    con.close()
+}
+</code></pre>
+<p>Però anem un pas més enllà i anem a utilitzar paràmetres. La utilització de
+paràmetres, a banda de la comoditat, en pot anar molt bé per a previndre
+errors. Observeu com en els dos exemples anteriors teníem un problema si el
+nom de la comarca conté una cometa simple (') com és en el cas per exemple de
+la <strong>Vall d'Albaida</strong>. Si intentem posar aquesta comarca ens saltarà un error,
+i és perquè interpretarà la cometa com el final de la cadena Varchar, i no
+sabrà què és Albaida</p>
+<pre><code>    SELECT nom,altura FROM POBLACIO WHERE nom_c='Vall d'Albaida' AND altura=500
+</code></pre>
+<p>La manera de solucionar-ho seria escapar la cometa, o doblar-la (vull dir 2
+cometes simples, no doble cometa). Però també ens pot anar molt bé i molt
+còmode utilitzar paràmetres, com veurem ara.</p>
+<p>Els <strong>paràmetres</strong> de la sentència es marcaran amb el símbol d’interrogant (?)
+i s’identificaran per la posició que ocupen a la sentència, començant a
+comptar des de l’esquerra i a partir del número 1. El valor dels paràmetres
+s’assignarà fent servir el mètode específic, d’acord amb el tipus de dades a
+assignar. El nom d'aquestos mètodes començarà per <strong>set</strong> i continuarà amb el
+nom del tipus de dades (exemples:<strong>setString()</strong> , <strong>setInt()</strong> ,
+<strong>setLong()</strong> , <strong>setBoolean()</strong> …). Tots aquestos mètodes segueixen la
+mateixa sintaxi:</p>
+<pre><code>setXXXX(&lt;posicioALaSentenciaSQL&gt;, &lt;valor&gt;)
+</code></pre>
+<p>Veiem com quedaria el nostre exemple.</p>
+<p>Copieu el següent codi en un fitxer Kotlin anomenat
+<strong>Exemple_4_73_PreparedStatement_ambParametres.kt</strong> :</p>
+<pre><code>package exemples
+
+import java.sql.DriverManager
+import java.util.Scanner
+
+fun main(args: Array&lt;String&gt;) {
+    val con = DriverManager.getConnection("jdbc:postgresql://89.36.214.106:5432/geo_ad", "geo_ad", "geo_ad")
+
+    println("Introdueix una comarca:")
+    val com = Scanner(System.`in`).nextLine()
+    println("Introdueix una altura:")
+    val alt = Scanner(System.`in`).nextInt()
+
+    val st = con.prepareStatement("SELECT nom,altura FROM POBLACIO WHERE nom_c=? AND altura&gt;?")
+    st.setString(1,com)             // Abans d'executar-la s'han d'iniciar els paràmetres
+    st.setInt(2,alt)
+    val rs = st.executeQuery()      // La sentència no va en el moment de l'execució sinó en el de creació
+    while (rs.next()) {
+        println(rs.getString(1) + " (" +rs.getInt(2) + " m.)")
+    }
+    st.close()
+    con.close()
+}
+</code></pre>
+<p>Mireu com és més còmode, perquè en el moment de definir la sentència (quan
+creem el PreparedStatement) per a el string no ens hem preocupat de posar la
+cometa. Ni tampoc en el moment de definir el paràmetre en la línia següent.</p>
+<p>I a més ara no fallarà quan posem la comarca <strong>Vall d'Albaida</strong></p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-sa/2.5/">Llicència Creative Commons Reconeixement CompartirIgual
+2.5</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../5__iniciaci_a_lapi_jdbc/" class="btn btn-neutral float-left" title="5 - Iniciació a l'API JDBC"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exercicis/" class="btn btn-neutral float-right" title="Exercicis">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../5__iniciaci_a_lapi_jdbc/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../exercicis/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
