@@ -12,7 +12,10 @@ theme:
 
 markdown_extensions:
   - admonition
-   
+  - toc:
+      permalink: True 
+  - tables    
+  - attr_list
 
 nav:
 

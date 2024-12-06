@@ -1,7 +1,10 @@
+
 body, h1, h2, h3, h4, h5, h6, p, li, ul, ol, blockquote {
-    font-size: 14px !important;  /* Ajusta este valor según tus preferencias */
+    font-size: 14px !important;  
     line-height: 1.6;  /* Mejora la legibilidad */
+   
 }
+
 
 p {
     text-align: justify;
@@ -11,3 +14,14 @@ p {
     margin: 0 auto; /* Centra el contenedor en la página */
 }
 
+.rojo {
+    color: red !important;
+}
+
+.azul {
+    color: blue !important;
+}
+
+.verde {
+    color: green !important;
+} 

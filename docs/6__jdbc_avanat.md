@@ -416,15 +416,13 @@ siga l’adequat, que les sentències tinguen errades, que el SGBD no suporte la
 sentència, i un llarg etcètera de possibilitats.
 
 
+!!! note "Nota"
+    Podeu trobar informació referida als codis de <b>SQLSTATE</b> en la wikipedia, en
+    aquest <a href ="https://en.wikipedia.org/wiki/SQLSTATE"> enllaç</a>. El codi SQLSTATE està
+    format per cinc caràcters. Els dos primers indiquen la tipologia de l’error i
+    els tres últims el concreten.
 
-<u>**Nota**</u> 
-<div style="background-color: #d6eaf8; color: black; padding: 5px;"> 
-Podeu trobar informació referida als codis de <b>SQLSTATE</b> en la wikipedia, en
-aquest <a href ="https://en.wikipedia.org/wiki/SQLSTATE"> enllaç</a>. El codi SQLSTATE està
-format per cinc caràcters. Els dos primers indiquen la tipologia de l’error i
-els tres últims el concreten.
-</div>
-<p></p>
+
 
 Els errors SQL es troben molt ben definits a l’especificació estàndard, la
 qual descriu el valor de la variable anomenada **SQLSTATE** , que identifica
@@ -451,15 +449,13 @@ haguera estat _08001_ significaria que JDBC està trobant problemes de xarxa a
 l’hora de connectar, ja siguen deguts a una desconnexió física, o simplement a
 un _host_ o adreça IP desconegut.
 
-<u>**Nota**</u> 
-<div style="background-color: #d6eaf8; color: black; padding: 5px;">   
-PostgreSQL defineix millor l'error d'autenticació. En el cas de PostgreSQL és
-el 28P01. Per tant hauríem de substituir per aquest valor en el programa
-posterior si volem connectar a ell. La taula d'errors de PostgreSQL la podeu
-trobar en aquest <a href ="https://www.postgresql.org/docs/current/static/errcodes-
-appendix.html"> enllaç</a> 
-</div>
-<p></p>
+!!! note "Nota" 
+    PostgreSQL defineix millor l'error d'autenticació. En el cas de PostgreSQL és
+    el 28P01. Per tant hauríem de substituir per aquest valor en el programa
+    posterior si volem connectar a ell. La taula d'errors de PostgreSQL la podeu
+    trobar en aquest <a href ="https://www.postgresql.org/docs/current/static/errcodes-
+    appendix.html"> enllaç</a> 
+
 
 
 No cal informar detalladament l’usuari de tots i cadascun dels possibles

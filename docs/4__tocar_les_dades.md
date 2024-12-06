@@ -1,10 +1,10 @@
-# 4 - "Tocar" les dades
+# 4 - "Tocar" les dades 
 
 Abans de començar a treballar la persistència en diferents Bases de Dades
 Relacionals, ens convindrà accedir al Sistema Gestor de Base de Dades per a
 poder veure les dades, treballar amb elles.
 
-Bàsicament voldrem:
+  Bàsicament voldrem: 
 
   * Poder veure les taules de la Base de Dades
   * Poder veure l'estructura de cada taula: camps, tipus dels camps, clau principal, ...
@@ -21,7 +21,7 @@ que amb la perspectiva anterior. Per això veurem una eina que ens permet
 connectar a quasi tots els Sistemes Gestors de Bases de Dades Relacionals, i
 per tant amb una única eina podem connectar on vulguem. És el **DBeaver**.
 
-## 4.1 - Des de IntelliJ
+## 4.1 - Des de IntelliJ 
 
 Des dels programes Java o Kotlin podríem connectar ja mateix a les diferents
 BD amb els connectors JDBC, però abans ens faria falta poder veure les taules
@@ -43,11 +43,11 @@ Des d'aquesta finestra podrem controlar les connexions a Bases de Dades i
 també els Drivers JDBC que ens permeten connectar. Com hem comentat serà
 independent dels projectes Java o Kotlin
 
-**<u>Connexió a PostgreSQL</u>**
+ **<u>Connexió a PostgreSQL</u>** 
 
 
 Com a primer exemple de connexió, intentarem connectar a PostgreSQL. Farà
-falta especificar:
+falta especificar: 
 
   * Les dades de connexió, que seran: 
     * Servidor (host): **89.36.214.106**

@@ -1,4 +1,4 @@
-# 1 - Les Bases de Dades Relacionals
+# 1 - Les Bases de Dades Relacionals 
 
 Els Sistemes Gestors de Bases de Dades Relacionals es basen en el Model
 Relacional (com el seu nom indica), és a dir en taules interrelacionades entre
