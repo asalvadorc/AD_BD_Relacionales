@@ -10,6 +10,10 @@ theme:
   highlightjs: true
   logo: assets/logocaminas.png
 
+markdown_extensions:
+  - admonition
+   
+
 nav:
 
 - UD 2. Bases de Dades Relacionals:
